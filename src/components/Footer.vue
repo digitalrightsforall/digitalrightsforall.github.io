@@ -15,23 +15,23 @@ const footerLinks = [
         <div class="lg:col-span-2">
           <router-link to="/" class="flex items-center gap-2 mb-6">
             <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg">
-              <Shield size={24} />
+              <Shield :size="24" />
             </div>
             <span class="text-xl font-black tracking-tighter text-on-surface">数字权利全民行</span>
           </router-link>
-          <p className="text-on-surface-variant max-w-sm leading-relaxed mb-8">
+          <p class="text-on-surface-variant max-w-sm leading-relaxed mb-8">
             我们是一个致力于提升公众数字素养、守护个人数字权利的共创社区。
             通过知识普及、技术实验与社会倡导，让每一个人都能在数字时代有尊严地生活。
           </p>
           <div class="flex gap-4">
             <a href="#" class="p-3 rounded-xl bg-surface-container hover:bg-primary hover:text-white transition-all">
-              <Twitter size={20} />
+              <Twitter :size="18" />
             </a>
             <a href="#" class="p-3 rounded-xl bg-surface-container hover:bg-primary hover:text-white transition-all">
-              <Github size={20} />
+              <Github :size="18" />
             </a>
             <a href="#" class="p-3 rounded-xl bg-surface-container hover:bg-primary hover:text-white transition-all">
-              <Mail size={20} />
+              <Mail :size="18" />
             </a>
           </div>
         </div>
@@ -40,9 +40,9 @@ const footerLinks = [
           <h4 class="text-sm font-black uppercase tracking-widest text-on-surface mb-6">{{ section.title }}</h4>
           <ul class="space-y-4">
             <li v-for="link in section.links" :key="link">
-              <a href="#" class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 group">
+              <a href="#" class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2 group">
                 {{ link }}
-                <ArrowUpRight size={14} class="opacity-0 group-hover:opacity-100 transition-opacity" />
+                <ArrowUpRight :size="14" class="opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
             </li>
           </ul>
