@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { events } from '@/src/content';
+import { events } from '@/content';
 import { Calendar, MapPin, Users, ArrowRight, CheckCircle2 } from 'lucide-vue-next';
 </script>
 

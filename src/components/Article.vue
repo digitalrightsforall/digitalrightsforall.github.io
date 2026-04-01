@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import VueMarkdown from 'vue-markdown-render';
-import { articles } from '@/src/content';
+import { articles } from '@/content';
 import { ArrowLeft, Share2, Bookmark, MessageSquare, Lightbulb, ChevronRight } from 'lucide-vue-next';
 
 const route = useRoute();

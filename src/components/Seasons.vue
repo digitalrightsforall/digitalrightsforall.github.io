@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { seasons } from '@/src/content';
-import { cn } from '@/src/lib/utils';
+import { seasons } from '@/content';
+import { cn } from '@/lib/utils';
 import { ArrowRight, CheckCircle2 } from 'lucide-vue-next';
 </script>
 

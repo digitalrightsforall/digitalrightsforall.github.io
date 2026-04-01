@@ -1,0 +1,40 @@
+---
+id: toolbox-overview
+title: 指北工具箱
+excerpt: 指北工具箱包含了一系列知识类和行动类的工具，帮助人们更好理解或守护个人的数字权利。
+category: 工具资源
+readTime: 5 分钟
+author: 数字权利圆桌派
+date: 2024年06月01日
+image: https://opendatachina.feishu.cn/wiki/NgdawiGobi6J7Gk0h4bcmiLynbe
+tips:
+  title: 指北工具箱
+  content: 工具箱包含知识类和行动类工具，帮助普通人理解数字权利、守护个人数据。
+  image: https://opendatachina.feishu.cn/wiki/NgdawiGobi6J7Gk0h4bcmiLynbe
+---
+
+# 指北工具箱
+
+指北工具箱包含了我们推荐或引入的一系列知识类或行动类的工具，帮助人们更好理解或守护个人的数字权利。其中一部分工具内容在我们的互动工作坊中得以运用和讲解，一部分则作为补充的手册或知识提供读者检索参考使用。
+
+## 工具箱分类
+
+### 个人数据保护工具
+
+保护你的个人数据免受未经授权的访问和使用。
+
+### 知情权行使指南
+
+了解如何查看隐私政策、请求访问个人数据、查询数据收集情况。
+
+### 控制权行使指南
+
+学习如何更正个人数据、删除个人数据、撤回同意、限制数据处理。
+
+### 维权指南
+
+了解投诉渠道、投诉信模板、成功维权的真实案例。
+
+## 参与贡献
+
+欢迎联系我们分享你的经验和建议：digitalrights@opendatachina.org

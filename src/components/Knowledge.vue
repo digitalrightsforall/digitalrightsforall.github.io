@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { articles } from '@/src/content';
+import { articles } from '../content';
 import { ArrowRight, BookOpen, Clock, Tag } from 'lucide-vue-next';
 </script>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ArrowRight, History, CheckCircle, Book } from 'lucide-vue-next';
-import { seasons } from '@/src/content';
-import { cn } from '@/src/lib/utils';
+import { seasons } from '@/content';
+import { cn } from '@/lib/utils';
 </script>
 
 <template>
