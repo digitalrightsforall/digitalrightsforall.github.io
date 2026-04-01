@@ -298,60 +298,67 @@ image: https://lh3.googleusercontent.com/...
 
 ---
 
-## 内容同步：从飞书知识库自动拉取
+## 内容同步：从飞书知识库增量同步
 
-网站支持从飞书知识库自动同步内容，包括文档正文和图片。
+网站支持从飞书知识库自动发现并增量同步内容。
 
-### 同步脚本
+### 同步命令
 
 ```bash
-# 同步所有配置的文档
+# 检查知识库中的文档状态（不执行同步）
+bun run src/sync/sync.ts --check
+
+# 同步所有文档
 bun run src/sync/sync.ts
 
-# 同步指定文档
-bun run src/sync/sync.ts --id=data-trustee-1
+# 同步指定文档（按标题或 token 匹配）
+bun run src/sync/sync.ts --id=数据受托者
+
+# 强制同步所有文档（忽略增量检查）
+bun run src/sync/sync.ts --force
 ```
 
-### 配置同步文档
+### 增量同步机制
 
-编辑 `src/sync/config.ts`，添加文档映射：
+脚本会自动比较本地文件和飞书文档的修改时间：
+- 飞书文档较新 → 自动同步
+- 本地文件较新 → 跳过
+- 本地文件不存在 → 自动创建
 
-```typescript
-const syncList = [
-  {
-    id: 'my-article',           // 文章 ID（用于生成文件名）
-    feishuToken: 'xxxxxxxx',    // 飞书文档 token
-    category: '分类名称',       // 文章分类
-    featured: true,             // 是否首页精选
-  },
-  // 添加更多文档...
-];
+### 同步控制标记
+
+在飞书文档中添加以下注释来控制同步行为：
+
+```markdown
+<!-- sync: false -->   不同步此文档
+<!-- sync: manual -->  不同步此文档（仅手动同步）
 ```
 
 ### 同步流程
 
-1. 从飞书拉取文档内容
-2. 下载文档中的图片到 `src/assets/images/articles/{id}/`
-3. 将图片 token 替换为本地相对路径
-4. 生成 `src/content/articles/{id}.md`
+1. 自动获取知识库中的所有文档
+2. 比较本地文件与飞书文档的修改时间
+3. 下载文档图片到 `src/assets/images/articles/{slug}/`
+4. 生成/更新 `.md` 文件（包含 frontmatter）
 
-### 图片存储位置
+### 生成的文件
 
 ```
-src/assets/images/
-├── articles/
-│   └── {article-id}/
-│       ├── BUnIbbIB.jpg    # 文档图片
-│       └── cover.jpg        # 可手动添加封面图
-└── ...
+src/content/articles/
+└── {标题slug}.md        # 自动从标题生成
+
+src/assets/images/articles/
+└── {标题slug}/
+    ├── xxx.jpg          # 下载的图片
+    └── cover.jpg        # 可手动添加封面
 ```
 
-### 手动维护 vs 自动同步
+### frontmatter 新增字段
 
-| 方式 | 适用场景 |
-|------|----------|
-| 手动编辑 `.md` | 小幅修改、紧急更新 |
-| 同步脚本 | 从飞书完整拉取新内容 |
+```yaml
+feishu_token: GuMgdDU8JoSYRixo9uUckek4nVV
+feishu_url: https://opendatachina.feishu.cn/wiki/xxx
+```
 
 ---
 

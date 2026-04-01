@@ -1,61 +1,48 @@
 #!/usr/bin/env bun
 
 /**
- * 飞书内容同步脚本
+ * 飞书内容增量同步脚本 v2
  * 
  * 功能：
- * 1. 从飞书拉取文档内容
- * 2. 下载文档中的图片到本地
- * 3. 将图片 token 替换为本地相对路径
- * 4. 生成 .md 文件
+ * 1. 增量同步 - 只同步新增或修改的文档
+ * 2. 智能发现 - 自动获取知识库文档列表
+ * 3. 控制标记 - 飞书文档中的 sync 标记控制同步行为
+ * 
+ * 控制标记（在飞书文档中添加注释）：
+ *   <!-- sync: false -->   不同步此文档
+ *   <!-- sync: manual --> 仅手动同步
  * 
  * 使用方式：
- *   bun run src/sync/sync.ts              # 同步所有文档
- *   bun run src/sync/sync.ts --id xxx     # 同步指定文档
+ *   bun run src/sync/sync.ts                    # 同步所有
+ *   bun run src/sync/sync.ts --check            # 仅检查，不同步
+ *   bun run src/sync/sync.ts --id=xxx           # 同步指定文档
  */
 
 import { execSync } from 'child_process';
-import { writeFileSync, mkdirSync, existsSync, cpSync } from 'fs';
+import { writeFileSync, readFileSync, existsSync, mkdirSync, statSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '../..');
 
-// 文档映射配置
-const syncList = [
-  {
-    id: 'data-trustee-1',
-    feishuToken: 'TP3HdXIb8owmPZx1o64cFQ7PnTe',
-    category: '数据受托者',
-    featured: true,
-  },
-  {
-    id: 'data-trustee-functions',
-    feishuToken: 'ML4HdV95EoRW9XxENYFcE5klnhd',
-    category: '数据受托者',
-    featured: true,
-  },
-  {
-    id: 'data-trustee-trust',
-    feishuToken: 'GuMgdDU8JoSYRixo9uUckek4nVV',
-    category: '数据受托者',
-    featured: true,
-  },
-];
+// 知识库根 token
+const WIKI_TOKEN = 'M1C1wcAdpiBAIOk54V3cSffGnAc';
 
-interface ImageToken {
+interface WikiDoc {
   token: string;
-  width?: string;
-  height?: string;
-  align?: string;
+  objToken: string;
+  title: string;
+  nodeToken: string;
+  hasChild: boolean;
+  updateTime: string;
 }
 
-interface SyncItem {
+interface SyncResult {
   id: string;
-  feishuToken: string;
-  category: string;
-  featured?: boolean;
+  title: string;
+  status: 'synced' | 'skipped' | 'error';
+  reason?: string;
 }
 
 /**
@@ -63,73 +50,90 @@ interface SyncItem {
  */
 function runCommand(cmd: string): string {
   try {
-    return execSync(cmd, { encoding: 'utf-8', cwd: ROOT });
+    return execSync(cmd, { encoding: 'utf-8', cwd: ROOT, maxBuffer: 10 * 1024 * 1024 });
   } catch (error: any) {
     console.error(`命令执行失败: ${cmd}`);
-    console.error(error.stdout || error.message);
+    if (error.stdout) console.error(error.stdout);
     return '';
   }
 }
 
 /**
- * 解析图片 token
+ * 获取知识库中的所有文档
  */
-function parseImageTokens(markdown: string): ImageToken[] {
-  const tokens: ImageToken[] = [];
-  const regex = /<image token="([^"]+)"(?:\s+width="([^"]+)")?(?:\s+height="([^"]+)")?(?:\s+align="([^"]+)")?/g;
-  let match;
-  while ((match = regex.exec(markdown)) !== null) {
-    tokens.push({
-      token: match[1],
-      width: match[2],
-      height: match[3],
-      align: match[4],
-    });
+async function getWikiDocs(wikiToken: string): Promise<WikiDoc[]> {
+  console.log('📚 获取知识库文档列表...');
+  
+  // 先获取根节点
+  const rootResult = runCommand(`lark-cli wiki spaces get_node --params '{"token": "${wikiToken}"}'`);
+  const rootData = JSON.parse(rootResult);
+  if (!rootData.data) {
+    console.error('❌ 无法获取知识库根节点');
+    return [];
   }
-  return tokens;
+  
+  const spaceId = rootData.data.node.space_id;
+  const docs: WikiDoc[] = [];
+  
+  // 使用 search API 搜索知识库中的所有文档
+  const searchResult = runCommand(`lark-cli docs +search --query "" --page-size 20`);
+  const searchData = JSON.parse(searchResult);
+  
+  if (searchData.data?.results) {
+    for (const item of searchData.data.results) {
+      if (item.entity_type === 'WIKI' && item.result_meta?.token) {
+        const nodeResult = runCommand(`lark-cli wiki spaces get_node --params '{"token": "${item.result_meta.token}"}'`);
+        const nodeData = JSON.parse(nodeResult);
+        
+        if (nodeData.data?.node) {
+          const node = nodeData.data.node;
+          // 只获取属于同一知识空间的文档
+          if (node.space_id === spaceId) {
+            docs.push({
+              token: node.node_token,
+              objToken: node.obj_token,
+              title: node.title,
+              nodeToken: node.node_token,
+              hasChild: node.has_child,
+              updateTime: node.obj_edit_time,
+            });
+          }
+        }
+      }
+    }
+  }
+  
+  console.log(`✅ 发现 ${docs.length} 个文档`);
+  return docs;
 }
 
 /**
- * 解析 frontmatter
+ * 拉取文档内容
  */
-function parseFrontmatter(doc: any, item: SyncItem): string {
-  const date = new Date().toLocaleDateString('zh-CN', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-  
-  return `---
-id: ${item.id}
-title: ${doc.title || item.id}
-excerpt: ${extractExcerpt(doc.markdown || '')}
-category: ${item.category}
-readTime: 5 分钟
-author: 数字权利圆桌派
-date: ${date}
-image: ./assets/images/articles/${item.id}/cover.jpg
-featured: ${item.featured || false}
----
-
-`;
+function fetchDoc(token: string): any {
+  const result = runCommand(`lark-cli docs +fetch --doc ${token} --format json`);
+  try {
+    return JSON.parse(result);
+  } catch {
+    return null;
+  }
 }
 
 /**
- * 提取摘要
+ * 解析 sync 控制标记
  */
-function extractExcerpt(markdown: string): string {
-  // 移除 frontmatter、HTML 标签等
-  let text = markdown
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/\n+/g, ' ')
-    .trim();
-  
-  // 取前 150 个字符
-  if (text.length > 150) {
-    text = text.substring(0, 150) + '...';
+function parseSyncMarker(markdown: string): { shouldSync: boolean; reason: string } {
+  // 检查 sync: false
+  if (markdown.includes('sync: false') || markdown.includes('sync:off')) {
+    return { shouldSync: false, reason: '文档标记为不同步' };
   }
   
-  return text;
+  // 检查 sync: manual
+  if (markdown.includes('sync: manual') || markdown.includes('sync:manual')) {
+    return { shouldSync: false, reason: '文档标记为仅手动同步' };
+  }
+  
+  return { shouldSync: true, reason: '' };
 }
 
 /**
@@ -142,108 +146,161 @@ function downloadImage(token: string, outputPath: string): boolean {
 }
 
 /**
- * 转换 markdown（替换图片 token 为本地路径）
+ * 解析图片 token
+ */
+function parseImageTokens(markdown: string): string[] {
+  const tokens: string[] = [];
+  const regex = /<image token="([^"]+)"/g;
+  let match;
+  while ((match = regex.exec(markdown)) !== null) {
+    tokens.push(match[1]);
+  }
+  return tokens;
+}
+
+/**
+ * 转换 markdown
  */
 function convertMarkdown(markdown: string, articleId: string): string {
   let converted = markdown;
   
-  // 替换 <image token="xxx" /> 为 ![图](./assets/images/articles/{id}/xxx.jpg)
-  const regex = /<image token="([^"]+)"(?:\s+width="([^"]+)")?(?:\s+height="([^"]+)")?(?:\s+align="([^"]+)")?\/?>/g;
-  
+  // 替换图片 token
+  const regex = /<image token="([^"]+)"[^>]*\/?>/g;
   converted = converted.replace(regex, (match, token) => {
-    const ext = token.substring(0, 2) === 'HX' ? 'png' : 'jpg'; // 简单判断类型
+    const ext = token.startsWith('HX') ? 'png' : 'jpg';
     const filename = `${token.substring(0, 8)}.${ext}`;
     return `![图](./assets/images/articles/${articleId}/${filename})\n`;
   });
   
   // 清理飞书特有标签
   converted = converted
-    // 清理 callout
     .replace(/<callout[^>]*>/g, '')
     .replace(/<\/callout>/g, '')
-    // 清理 text 标签
     .replace(/<text[^>]*>/g, '')
     .replace(/<\/text>/g, '')
-    // 清理 mention-doc 标签（保留文本）
     .replace(/<mention-doc[^>]*>([^<]*)<\/mention-doc>/g, '[$1]')
-    // 清理 wiki-catalog 标签
     .replace(/<wiki-catalog[^>]*\/>/g, '')
-    // 清理引用标签
     .replace(/<reference-synced[^>]*>/g, '')
-    .replace(/<\/reference-synced>/g, '');
+    .replace(/<\/reference-synced>/g, '')
+    .replace(/<!--[^>]*-->/g, ''); // 移除 HTML 注释（包括 sync 标记）
   
   return converted;
 }
 
 /**
+ * 生成文件名（从标题生成 slug）
+ */
+function generateSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\u4e00-\u9fa5]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/**
+ * 获取本地文件修改时间
+ */
+function getLocalMtime(filePath: string): number | null {
+  try {
+    const stats = statSync(filePath);
+    return stats.mtimeMs;
+  } catch {
+    return null;
+  }
+}
+
+/**
  * 同步单个文档
  */
-async function syncDocument(item: SyncItem): Promise<boolean> {
-  console.log(`\n📄 同步文档: ${item.id}`);
+async function syncDoc(wikiDoc: WikiDoc, force: boolean = false): Promise<SyncResult> {
+  const result: SyncResult = { id: wikiDoc.objToken, title: wikiDoc.title, status: 'error' };
   
-  // 1. 创建图片目录
-  const imgDir = join(ROOT, `src/assets/images/articles/${item.id}`);
+  // 拉取文档
+  const docData = fetchDoc(wikiDoc.objToken);
+  if (!docData?.ok || !docData.data) {
+    result.status = 'error';
+    return result;
+  }
+  
+  const doc = docData.data;
+  const markdown = doc.markdown || '';
+  
+  // 检查 sync 标记
+  const { shouldSync, reason } = parseSyncMarker(markdown);
+  if (!shouldSync) {
+    console.log(`  ⏭️ 跳过: ${reason}`);
+    result.status = 'skipped';
+    result.reason = reason;
+    return result;
+  }
+  
+  // 生成 article ID
+  const articleId = generateSlug(wikiDoc.title);
+  const outputFile = join(ROOT, `src/content/articles/${articleId}.md`);
+  const imgDir = join(ROOT, `src/assets/images/articles/${articleId}`);
+  
+  // 检查增量同步
+  const localMtime = getLocalMtime(outputFile);
+  const remoteTime = parseInt(wikiDoc.updateTime) * 1000; // 转换为毫秒
+  
+  if (!force && localMtime !== null && localMtime > remoteTime) {
+    console.log(`  ⏭️ 跳过: 本 地文件较新`);
+    result.status = 'skipped';
+    result.reason = '本地文件较新';
+    return result;
+  }
+  
+  // 创建图片目录
   mkdirSync(imgDir, { recursive: true });
   
-  // 2. 从飞书拉取文档
-  console.log('  ⏳ 从飞书拉取文档...');
-  const fetchCmd = `lark-cli docs +fetch --doc ${item.feishuToken} --format json`;
-  let fetchResult: any;
-  
-  try {
-    const rawResult = runCommand(fetchCmd);
-    fetchResult = JSON.parse(rawResult);
-    if (!fetchResult.ok) {
-      console.error(`  ❌ 拉取失败: ${fetchResult.message}`);
-      return false;
-    }
-  } catch (error) {
-    console.error(`  ❌ 解析结果失败`);
-    return false;
+  // 下载图片
+  const imageTokens = parseImageTokens(markdown);
+  for (const token of imageTokens) {
+    const ext = token.startsWith('HX') ? 'png' : 'jpg';
+    const filename = `${token.substring(0, 8)}.${ext}`;
+    const outputPath = `./src/assets/images/articles/${articleId}/${filename}`;
+    downloadImage(token, outputPath);
   }
   
-  const doc = fetchResult.data;
-  console.log(`  ✅ 文档标题: ${doc.title}`);
+  // 生成 frontmatter
+  const date = new Date(remoteTime).toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
   
-  // 3. 解析并下载图片
-  const imageTokens = parseImageTokens(doc.markdown || '');
-  console.log(`  📷 发现 ${imageTokens.length} 张图片`);
+  // 提取摘要
+  let excerpt = markdown
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\n+/g, ' ')
+    .trim()
+    .substring(0, 150);
+  if (excerpt.length === 150) excerpt += '...';
   
-  for (let i = 0; i < imageTokens.length; i++) {
-    const img = imageTokens[i];
-    const ext = img.token.substring(0, 2) === 'HX' ? 'png' : 'jpg';
-    const filename = `${img.token.substring(0, 8)}.${ext}`;
-    const outputPath = `./src/assets/images/articles/${item.id}/${filename}`;
-    
-    process.stdout.write(`    下载 ${i + 1}/${imageTokens.length}: ${filename}... `);
-    
-    if (downloadImage(img.token, outputPath)) {
-      console.log('✅');
-    } else {
-      console.log('❌ (跳过)');
-    }
-  }
+  const frontmatter = `---
+id: ${articleId}
+title: ${doc.title}
+excerpt: ${excerpt}
+category: 知识库
+readTime: 5 分钟
+author: 数字权利圆桌派
+date: ${date}
+image: ./assets/images/articles/${articleId}/cover.jpg
+feishu_token: ${wikiDoc.objToken}
+feishu_url: https://opendatachina.feishu.cn/wiki/${wikiDoc.token}
+---
+
+`;
   
-  // 4. 生成 frontmatter
-  const frontmatter = parseFrontmatter(doc, item);
+  // 转换内容
+  const content = convertMarkdown(markdown, articleId);
   
-  // 5. 转换 markdown
-  let content = convertMarkdown(doc.markdown || '', item.id);
+  // 写入文件
+  writeFileSync(outputFile, frontmatter + content, 'utf-8');
   
-  // 移除 callout 等飞书特有标签（简单处理）
-  content = content
-    .replace(/<callout[^>]*>/g, '')
-    .replace(/<\/callout>/g, '')
-    .replace(/<text[^>]*>/g, '')
-    .replace(/<\/text>/g, '');
-  
-  // 6. 写入文件
-  const outputFile = join(ROOT, `src/content/articles/${item.id}.md`);
-  const fullContent = frontmatter + content;
-  writeFileSync(outputFile, fullContent, 'utf-8');
-  console.log(`  ✅ 已生成: src/content/articles/${item.id}.md`);
-  
-  return true;
+  console.log(`  ✅ 已同步: ${articleId}.md`);
+  result.status = 'synced';
+  return result;
 }
 
 /**
@@ -251,32 +308,59 @@ async function syncDocument(item: SyncItem): Promise<boolean> {
  */
 async function main() {
   const args = process.argv.slice(2);
-  const idFilter = args.find(arg => arg.startsWith('--id='))?.split('=')[1];
+  const checkOnly = args.includes('--check');
+  const forceArg = args.find(arg => arg.startsWith('--force'));
+  const force = forceArg === '--force';
+  const idArg = args.find(arg => arg.startsWith('--id='));
+  const targetId = idArg?.split('=')[1];
   
-  console.log('🚀 开始同步飞书内容到网站');
-  console.log('=' .repeat(50));
+  console.log('🚀 飞书内容增量同步');
+  console.log('='.repeat(50));
   
-  const itemsToSync = idFilter
-    ? syncList.filter(item => item.id === idFilter)
-    : syncList;
+  if (checkOnly) {
+    console.log('🔍 仅检查模式，不执行同步\n');
+  }
   
-  if (itemsToSync.length === 0) {
-    console.log('❌ 没有找到匹配的文档');
+  // 获取知识库文档
+  const docs = await getWikiDocs(WIKI_TOKEN);
+  
+  if (docs.length === 0) {
+    console.log('❌ 未找到文档');
     process.exit(1);
   }
   
-  let successCount = 0;
+  const results: SyncResult[] = [];
   
-  for (const item of itemsToSync) {
-    const success = await syncDocument(item);
-    if (success) successCount++;
+  for (const doc of docs) {
+    // 如果指定了 --id，只处理匹配的文档
+    if (targetId && !doc.title.includes(targetId) && !doc.objToken.includes(targetId)) {
+      continue;
+    }
+    
+    console.log(`\n📄 ${doc.title}`);
+    console.log(`   Token: ${doc.objToken}`);
+    console.log(`   更新时间: ${new Date(parseInt(doc.updateTime) * 1000).toLocaleString()}`);
+    
+    if (checkOnly) {
+      results.push({ id: doc.objToken, title: doc.title, status: 'skipped', reason: '检查模式' });
+      continue;
+    }
+    
+    const result = await syncDoc(doc, force);
+    results.push(result);
   }
   
+  // 输出汇总
   console.log('\n' + '='.repeat(50));
-  console.log(`📊 同步完成: ${successCount}/${itemsToSync.length} 成功`);
+  console.log('📊 同步结果汇总:');
+  console.log(`   总计: ${results.length}`);
+  console.log(`   已同步: ${results.filter(r => r.status === 'synced').length}`);
+  console.log(`   跳过: ${results.filter(r => r.status === 'skipped').length}`);
+  console.log(`   错误: ${results.filter(r => r.status === 'error').length}`);
   
-  if (successCount < itemsToSync.length) {
-    process.exit(1);
+  if (checkOnly) {
+    console.log('\n💡 使用 --force 强制同步所有文档');
+    console.log('   使用 --id=xxx 同步指定文档');
   }
 }
 
