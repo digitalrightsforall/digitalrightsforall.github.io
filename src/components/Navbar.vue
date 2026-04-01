@@ -38,7 +38,7 @@ const navLinks = [
         <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg group-hover:rotate-12 transition-transform">
           <Shield :size="24" />
         </div>
-        <span class="text-xl font-black tracking-tighter text-on-surface">数字权利全民行</span>
+        <span class="text-xl font-black tracking-tighter text-on-surface">普通人的数字权利</span>
       </router-link>
 
       <!-- Desktop Nav -->

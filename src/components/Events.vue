@@ -7,11 +7,11 @@ import { Calendar, MapPin, Users, ArrowRight, CheckCircle2 } from 'lucide-vue-ne
   <div class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
     <header class="mb-20">
       <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-6">
-        社区活动：<br/>
-        <span class="hand-drawn-underline">从共识到行动</span>
+        共创工作坊：<br/>
+        <span class="hand-drawn-underline">知识与行动</span>
       </h1>
       <p class="text-on-surface-variant text-lg md:text-xl max-w-2xl leading-relaxed">
-        我们不只是在讨论权利，我们正在通过每一场工作坊、黑客松与线下沙龙，实实在在地改变数字世界的规则。
+        我们通过知识工坊、设计工坊等互动活动，和普通消费者一起探讨数字权利议题，共同发出普通人的声音。
       </p>
     </header>
 

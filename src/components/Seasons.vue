@@ -8,11 +8,11 @@ import { ArrowRight, CheckCircle2 } from 'lucide-vue-next';
   <div class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
     <header class="mb-20">
       <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-6">
-        主题季回顾：<br/>
-        <span class="hand-drawn-underline">沉淀与回响</span>
+        主题季：<br/>
+        <span class="hand-drawn-underline">共话到共创</span>
       </h1>
       <p class="text-on-surface-variant text-lg md:text-xl max-w-2xl leading-relaxed">
-        每一个季度，我们都聚焦一个核心权利议题。通过深度的社会调研、技术实验与社区共创，将抽象的权利转化为可感知的行动。
+        每一季我们聚焦一个核心议题，通过社会调研与社区共创，将抽象的数字权利转化为可感知的行动。从「共话」到「共创」，从「科普」到「行动」。
       </p>
     </header>
 

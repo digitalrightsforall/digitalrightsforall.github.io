@@ -7,11 +7,11 @@ import { ArrowRight, BookOpen, Clock, Tag } from 'lucide-vue-next';
   <div class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
     <header class="mb-20">
       <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-6">
-        知识库：<br/>
-        <span class="hand-drawn-underline">武装你的数字头脑</span>
+        普通人的<br/>
+        <span class="hand-drawn-underline">数字权利指北</span>
       </h1>
       <p class="text-on-surface-variant text-lg md:text-xl max-w-2xl leading-relaxed">
-        从基础的隐私设置到深度的法律解读，我们为你准备了全方位的数字权利指南。在这里，知识就是力量。
+        在这里，你可以找到数字权利相关的资讯、知识和工具。了解政策法规、掌握维权方法、守护你的数字边界。
       </p>
     </header>
 
