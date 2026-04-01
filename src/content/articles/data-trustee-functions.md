@@ -7,6 +7,7 @@ readTime: 10 分钟
 author: 数字权利圆桌派
 date: 2025年02月17日
 image: https://opendatachina.feishu.cn/docx/ML4HdV95EoRW9XxENYFcE5klnhd
+featured: true
 tips:
   title: 核心发现
   content: 消费者将「数据权益」放在个人数据受托者职能考量的第一位，「知情权」是消费者最希望获得的权利。

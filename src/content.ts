@@ -34,6 +34,7 @@ export interface Article {
   readTime: string;
   category: string;
   image: string;
+  featured?: boolean;
   tips?: {
     title: string;
     content: string;
@@ -89,4 +90,14 @@ export function getSeasonById(id: string): Season | undefined {
 
 export function getArticleById(id: string): Article | undefined {
   return articles.find(a => a.id === id);
+}
+
+export function getFeaturedArticles(limit: number = 3): Article[] {
+  const featured = articles.filter(a => a.featured);
+  if (featured.length >= limit) {
+    return featured.slice(0, limit);
+  }
+  const remaining = limit - featured.length;
+  const nonFeatured = articles.filter(a => !a.featured);
+  return [...featured, ...nonFeatured.slice(0, remaining)];
 }

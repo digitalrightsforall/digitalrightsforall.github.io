@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ArrowRight, History, CheckCircle, Book } from 'lucide-vue-next';
-import { seasons } from '@/content';
+import { seasons, getFeaturedArticles } from '@/content';
 import { cn } from '@/lib/utils';
+
+const featuredArticles = getFeaturedArticles(3);
 </script>
 
 <template>
@@ -85,24 +87,29 @@ import { cn } from '@/lib/utils';
             推荐知识库
           </h3>
           <div class="space-y-6">
-            <div v-for="i in [1, 2, 3]" :key="i" class="group p-8 bg-white rounded-3xl border border-outline-variant/10 hover:shadow-xl transition-all cursor-pointer">
+            <router-link 
+              v-for="article in featuredArticles" 
+              :key="article.id"
+              :to="`/article/${article.id}`" 
+              class="group p-8 bg-white rounded-3xl border border-outline-variant/10 hover:shadow-xl transition-all cursor-pointer block"
+            >
               <div class="flex items-center gap-4 mb-4">
                 <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs font-black rounded-full uppercase tracking-widest">
-                  法律解读
+                  {{ article.category }}
                 </span>
-                <span class="text-xs text-on-surface-variant font-bold">5 分钟阅读</span>
+                <span class="text-xs text-on-surface-variant font-bold">{{ article.readTime }}阅读</span>
               </div>
               <h4 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">
-                数字时代的“遗忘权”：我们真的能彻底消失吗？
+                {{ article.title }}
               </h4>
               <p class="text-on-surface-variant text-sm leading-relaxed mb-6">
-                在互联网永不遗忘的今天，如何行使你的“被遗忘权”？本文将为你深度拆解相关法律条款与技术手段。
+                {{ article.excerpt }}
               </p>
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-on-surface-variant">作者：李明 · 数字法学博士</span>
+                <span class="text-xs font-bold text-on-surface-variant">{{ article.author }}</span>
                 <ArrowRight :size="20" class="text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
               </div>
-            </div>
+            </router-link>
           </div>
         </div>
 

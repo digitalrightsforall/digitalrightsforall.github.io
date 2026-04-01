@@ -7,6 +7,7 @@ readTime: 8 分钟
 author: 数字权利圆桌派
 date: 2025年02月17日
 image: https://opendatachina.feishu.cn/docx/GuMgdDU8JoSYRixo9uUckek4nVV
+featured: true
 tips:
   title: 核心共识
   content: 「公开透明」是受托者赢得信任的基石，「参与决策」是消费者「放心」的底气。
