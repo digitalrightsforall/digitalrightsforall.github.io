@@ -5,7 +5,7 @@ shortTitle: "我们身边的算法"工作坊
 type: algorithm
 goal: 认识算法如何影响我们的日常生活和决策，理解算法推荐、自动化决策的运作原理和局限性，探讨在算法时代如何保护自己的权利。
 description: 通过互动工作坊，探讨算法推荐、自动化决策对普通人生活的影响。
-participants: 35
+participants: 2755
 videoUrl: 
 materials:
   - name: 工作坊教案

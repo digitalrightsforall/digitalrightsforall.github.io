@@ -5,7 +5,7 @@ shortTitle: "个人数据的围城"工作坊
 type: personal-data
 goal: 了解个人数据的流动路径，学会检索自己的数据，行使法定权利保护自己的个人信息。
 description: 通过互动工作坊，手把手教你了解自己的数据在哪里，如何行使查阅权。
-participants: 30
+participants: 3262
 videoUrl: https://www.bilibili.com/video/BV1AsDCBXEUF/?share_source=copy_web&vd_source=e773e9d59b01536e68daee22ecee0750
 materials:
   - name: 工作坊教案
