@@ -9,7 +9,7 @@ const workshopIcons: Record<string, string> = {
 };
 
 const workshopDescriptions: Record<string, string> = {
-  'personal-data': '了解个人数据流动路径',
+  'personal-data': '了解个人数据流动路径与权益',
   'algorithm': '认识算法如何影响我们的日常生活和决策',
   'ai-society': '探讨 AI 时代我们如何与自动化系统共存'
 };
