@@ -2,15 +2,13 @@
 id: biweekly-11
 title: 双周刊 第11期：数字权利动态 (01/14)
 excerpt: 2024 CES 上吴恩达与李飞飞对谈 AI 下一步；盖茨与奥特曼聊 AI 监管与后稀缺时代；刘永谋谈《非诚勿扰3》中的机器人人文；腾讯研究院《调教最暖大模型》实验
-category: 双周刊
+type: biweekly
+issue: "11"
 readTime: 10 分钟
 author: 数字权利圆桌派
 date: 2024年01月14日
 image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Digital%20rights%20newsletter%20issue%2011%20cover%20with%20AI%20and%20human%20coexistence%20theme&image_size=landscape_16_9
-tips:
-  title: 2024 AI 展望
-  content: 吴恩达认为自主助理即将出现，李飞飞认为更可能是辅助助理的人机协同。你认同哪种观点？
-  image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=AI%20and%20human%20collaboration%20illustration&image_size=square_hd
+---
 ---
 
 # 双周刊 第11期：数字权利动态 (01/14)

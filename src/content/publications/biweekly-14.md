@@ -2,15 +2,13 @@
 id: biweekly-14
 title: 双周刊 第14期：数字权利动态 (03/03)
 excerpt: Sora热度持续，国内AI视频产品横评；AI"复活"亲人的伦理与数据权利；两会提案：保障劳动者离线休息权
-category: 双周刊
+type: biweekly
+issue: "14"
 readTime: 10 分钟
 author: 数字权利圆桌派
 date: 2024年03月03日
 image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Digital%20rights%20newsletter%20issue%2014%20cover%20with%20AI%20resurrection%20and%20offline%20rights%20theme&image_size=landscape_16_9
-tips:
-  title: 离线休息权
-  content: 在法定或约定工作时间之外，劳动者享有拒绝通过数字工具进行工作联络或处理工作事宜的权利。你认为这是新时代普通人应享有的数字权利吗？
-  image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Offline%20rest%20rights%20work-life%20balance%20illustration&image_size=square_hd
+---
 ---
 
 # 双周刊 第14期：数字权利动态 (03/03)

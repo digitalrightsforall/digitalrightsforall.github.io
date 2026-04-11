@@ -2,15 +2,12 @@
 id: biweekly-1
 title: 双周刊 第1期：数字权利动态 (8/24)
 excerpt: 本期双周刊为您带来最新的数字权利相关资讯，包括政策更新、技术动态和社区活动。
-category: 双周刊
+type: biweekly
+issue: "1"
+date: 2024年08月24日
 readTime: 8 分钟
 author: 数字权利圆桌派
-date: 2024年08月24日
 image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=digital%20rights%20newsletter%20cover%20with%20shield%20icon%20and%20newspaper%20theme&image_size=landscape_16_9
-tips:
-  title: 关注我们
-  content: 订阅双周刊，获取最新数字权利动态。
-  image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=subscribe%20newsletter%20illustration&image_size=square
 ---
 
 # 双周刊 第1期：数字权利动态

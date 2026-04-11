@@ -2,15 +2,12 @@
 id: biweekly-4
 title: 双周刊 第4期：数字权利动态 (10/8)
 excerpt: 国庆特刊：假期网络安全提示、购物节隐私保护、旅行数据安全建议。
-category: 双周刊
+type: biweekly
+issue: "4"
 readTime: 7 分钟
 author: 数字权利圆桌派
 date: 2024年10月08日
 image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=holiday%20internet%20security%20and%20privacy%20protection&image_size=landscape_16_9
-tips:
-  title: 假期安全提示
-  content: 享受假期的同时，别忘了网络安全！
-  image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=holiday%20safety%20icon&image_size=square
 ---
 
 # 双周刊 第4期：数字权利动态（国庆特刊）

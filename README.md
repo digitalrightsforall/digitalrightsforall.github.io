@@ -53,34 +53,60 @@ npm run clean      # 清理构建目录
 
 ```
 digitalrights-web/
-├── content/              # 内容目录
-│   ├── articles/         # 博客文章
-│   ├── events/           # 活动内容
-│   └── seasons/          # 主题季内容
+├── src/content/           # 内容目录
+│   ├── articles/          # 知识库文章
+│   ├── publications/      # 资讯（双周刊/月度盘点）
+│   ├── workshops/        # 工作坊
+│   ├── campaigns/        # 行动项目
+│   ├── events/           # 活动
+│   └── seasons/          # 主题季
 ├── src/
 │   ├── components/       # Vue 组件
-│   │   ├── Home.vue      # 首页
-│   │   ├── Events.vue    # 活动页
-│   │   ├── Seasons.vue   # 主题季页
-│   │   ├── Knowledge.vue # 知识库页
-│   │   ├── Article.vue   # 文章详情页
-│   │   ├── Navbar.vue    # 导航栏
-│   │   └── Footer.vue    # 页脚
+│   │   ├── Home.vue          # 首页
+│   │   ├── NewsList.vue     # 资讯列表页
+│   │   ├── LearnIndex.vue   # 数字素养首页
+│   │   ├── WorkshopDetail.vue   # 工作坊详情页
+│   │   ├── CampaignList.vue     # 行动项目列表页
+│   │   ├── CampaignDetail.vue   # 行动项目详情页
+│   │   ├── Events.vue        # 活动页
+│   │   ├── Seasons.vue       # 主题季页
+│   │   ├── Knowledge.vue     # 知识库页
+│   │   ├── Article.vue      # 文章详情页（支持资讯和知识库）
+│   │   ├── About.vue        # 关于我们页
+│   │   ├── Navbar.vue        # 导航栏
+│   │   └── Footer.vue       # 页脚
 │   ├── lib/
-│   │   └── utils.ts      # 工具函数
-│   ├── App.vue           # 根组件
-│   ├── content.ts        # 内容数据管理
-│   ├── main.ts           # 入口文件
-│   ├── router.ts         # 路由配置
-│   ├── index.css         # 全局样式
-│   └── env.d.ts          # 类型声明
+│   │   └── utils.ts         # 工具函数
+│   ├── App.vue              # 根组件
+│   ├── content.ts           # 内容数据管理（支持多类型内容）
+│   ├── main.ts              # 入口文件
+│   ├── router.ts           # 路由配置
+│   ├── index.css            # 全局样式
+│   └── env.d.ts             # 类型声明
 ├── index.html
 ├── package.json
 ├── tsconfig.json
 ├── vite.config.ts
-├── CONTENT_GUIDE.md      # 内容添加详细指南
+├── CONTENT_GUIDE.md         # 内容添加详细指南
 └── README.md
 ```
+
+## 页面与路由
+
+| 路径 | 页面 | 说明 |
+|------|------|------|
+| `/` | Home | 首页（四大模块） |
+| `/news` | NewsList | 资讯列表（双周刊/月度盘点） |
+| `/news/:id` | Article | 资讯详情 |
+| `/learn` | LearnIndex | 数字素养首页 |
+| `/learn/workshop/:id` | WorkshopDetail | 工作坊详情 |
+| `/campaign` | CampaignList | 行动项目列表 |
+| `/campaign/:id` | CampaignDetail | 行动项目详情 |
+| `/events` | Events | 活动列表 |
+| `/seasons` | Seasons | 主题季列表 |
+| `/knowledge` | Knowledge | 知识库列表 |
+| `/article/:id` | Article | 知识库文章详情 |
+| `/about` | About | 关于我们 |
 
 ## 部署到 GitHub Pages
 
@@ -153,78 +179,137 @@ npm run deploy
 
 ## 扩展内容
 
-### 添加新文章
+### 内容类型
 
-在 `content/articles/` 目录下创建新的 Markdown 文件，例如 `content/articles/2.md`：
+网站支持以下内容类型，存储在 `src/content/` 目录下：
+
+#### 1. 资讯（publications）
+双周刊和月度盘点，存储在 `src/content/publications/`：
 
 ```markdown
 ---
-id: '2'
-title: '您的文章标题'
-excerpt: '文章的简短摘要'
-category: '分类名称'
+id: 'biweekly-1'
+title: '双周刊 第1期：标题'
+excerpt: '摘要'
+type: 'biweekly'  # 或 'monthly'
+issue: '1'
+date: '2024年08月24日'
 readTime: '5 分钟'
-author: '作者姓名'
-date: '2024年XX月XX日'
-image: 'https://example.com/cover-image.jpg'
-tips:
-  title: '小贴士标题（可选）'
-  content: '小贴士内容（可选）'
-  image: 'https://example.com/tips-image.jpg（可选）'
+author: '开放数据中国'
+image: 'https://example.com/image.jpg'
 ---
 
-这里是文章的正文内容，支持 Markdown 格式。
-
-## 一级标题
-
-段落内容...
-
-### 二级标题
-
-更多内容...
+正文内容...
 ```
 
-### 添加新活动
-
-在 `content/events/` 目录下创建新的 Markdown 文件，例如 `content/events/5.md`：
+#### 2. 工作坊（workshops）
+互动工作坊，存储在 `src/content/workshops/`：
 
 ```markdown
 ---
-id: '5'
+id: 'workshop-personal-data'
+title: '我的数据去哪儿了？'
+shortTitle: '个人数据工作坊'
+type: 'personal-data'  # personal-data | algorithm | ai-society
+goal: '学习目标'
+description: '工作坊描述'
+participants: 30
+materials:
+  - '配套指南1'
+  - '配套指南2'
+image: 'https://example.com/image.jpg'
+color: 'primary'  # primary | secondary | tertiary
+---
+
+工作坊详情...
+```
+
+#### 3. 行动项目（campaigns）
+公众参与项目，存储在 `src/content/campaigns/`：
+
+```markdown
+---
+id: 'data-trustee-2025'
+title: '消费者放心的个人数据受托者'
+year: '2025'
+status: 'completed'  # active | completed
+goal: '项目目标'
+participants: 68
+outputs:
+  - '产出1'
+  - '产出2'
+image: 'https://example.com/image.jpg'
+color: 'primary'
+---
+
+项目详情...
+```
+
+#### 4. 知识库文章（articles）
+科普文章，存储在 `src/content/articles/`：
+
+```markdown
+---
+id: '1'
+title: '文章标题'
+excerpt: '摘要'
+category: '分类'
+readTime: '5 分钟'
+author: '作者'
+date: '2024年XX月XX日'
+image: 'https://example.com/image.jpg'
+featured: true  # 可选，是否在首页推荐
+tips:           # 可选，小贴士
+  title: '小贴士标题'
+  content: '小贴士内容'
+  image: 'https://example.com/tip.jpg'
+---
+
+正文...
+```
+
+#### 5. 活动（events）
+线下/线上活动，存储在 `src/content/events/`：
+
+```markdown
+---
+id: '1'
 title: '活动标题'
 description: '活动描述'
 date: '2024.XX.XX'
 time: 'XX:00 - XX:00'
-location: '活动地点'
-category: '活动类型'
-image: 'https://example.com/event-image.jpg'
-seatsRemaining: 10  # 可选，剩余座位
-attendeesCount: 50  # 可选，参与人数
+location: '地点'
+category: '类型'
+image: 'https://example.com/image.jpg'
 ---
+
+活动详情...
 ```
 
-### 添加新主题季
-
-在 `content/seasons/` 目录下创建新的 Markdown 文件，例如 `content/seasons/s5.md`：
+#### 6. 主题季（seasons）
+季度主题项目，存储在 `src/content/seasons/`：
 
 ```markdown
 ---
-id: 's5'
-number: 'Season 05'
-title: '主题季标题'
-goal: '主题季的目标描述'
+id: 's3'
+number: 'Season 03'
+title: '主题标题'
+goal: '目标描述'
 outputs:
   - '成果1'
   - '成果2'
-image: 'https://example.com/season-image.jpg'
-icon: 'lock_person'  # 图标名称，来自 lucide-vue-next
-color: 'primary'  # 可选值: primary, secondary, tertiary
+image: 'https://example.com/image.jpg'
+icon: 'users'
+color: 'primary'
 ---
+
+主题季详情...
 ```
 
 ### 注意事项
 
-- **文件命名**：建议使用简单的 ID 命名，如 `2.md`、`5.md`、`s5.md`
+- **文件路径**：内容文件放在 `src/content/` 对应子目录下，不是根目录的 `content/`
+- **文件命名**：建议使用简单的 ID 命名，如 `biweekly-1.md`、`workshop-personal-data.md`
 - **ID 唯一性**：确保每个内容项的 `id` 字段都是唯一的
 - **图片链接**：可以使用外部图片 URL，或者将图片放在 `public/` 目录下
 - **热更新**：开发时修改内容文件会自动热更新，无需重启服务器

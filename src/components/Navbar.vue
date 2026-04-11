@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
-import { Menu, X, Shield, Users, Calendar, BookOpen, Info } from 'lucide-vue-next';
+import { Menu, X, Shield, Users, Calendar, BookOpen, Info, FileText, GraduationCap, Target } from 'lucide-vue-next';
 
 const isScrolled = ref(false);
 const isMobileMenuOpen = ref(false);
@@ -19,10 +19,11 @@ onUnmounted(() => {
 
 const navLinks = [
   { name: '首页', path: '/', icon: Shield },
-  { name: '社区活动', path: '/events', icon: Users },
-  { name: '主题季', path: '/seasons', icon: Calendar },
-  { name: '知识库', path: '/knowledge', icon: BookOpen },
-  { name: '关于', path: '/about', icon: Info },
+  { name: '资讯', path: '/news', icon: FileText },
+  { name: '数字素养', path: '/learn', icon: GraduationCap },
+  { name: '行动项目', path: '/campaign', icon: Target },
+  { name: '活动', path: '/events', icon: Users },
+  { name: '关于我们', path: '/about', icon: Info },
 ];
 </script>
 
@@ -54,7 +55,7 @@ const navLinks = [
           <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
         </router-link>
         <button class="px-6 py-2.5 bg-primary text-on-primary rounded-full text-sm font-bold hover:shadow-lg hover:-translate-y-0.5 transition-all">
-          加入社区
+          成为社区一员
         </button>
       </div>
 

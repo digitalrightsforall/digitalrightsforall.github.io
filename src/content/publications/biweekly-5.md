@@ -2,15 +2,13 @@
 id: biweekly-5
 title: 双周刊 第5期：数字权利动态 (10/22)
 excerpt: 本期带来社交媒体隐私设置详解、App权限管理指南以及生物识别技术的安全思考。
-category: 双周刊
+type: biweekly
+issue: "5"
 readTime: 9 分钟
 author: 数字权利圆桌派
 date: 2024年10月22日
 image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=social%20media%20privacy%20settings%20and%20app%20permission%20management&image_size=landscape_16_9
-tips:
-  title: 隐私设置检查
-  content: 定期检查社交媒体和App的隐私设置！
-  image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=privacy%20settings%20check%20icon&image_size=square
+---
 ---
 
 # 双周刊 第5期：数字权利动态

@@ -2,15 +2,13 @@
 id: biweekly-8
 title: 双周刊 第8期：数字权利动态 (12/03)
 excerpt: 个人数据的围城：对强制扫码判赔；日常中的AI：为自动化决策加上紧箍咒
-category: 双周刊
+type: biweekly
+issue: "8"
 readTime: 11 分钟
 author: 数字权利圆桌派
 date: 2023年12月03日
 image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Digital%20rights%20newsletter%20issue%208%20cover%20with%20automated%20decision%20theme&image_size=landscape_16_9
-tips:
-  title: 强制扫码维权
-  content: 你遇到过强制扫码点餐吗？现在有法院支持维权成功案例了！
-  image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=QR%20code%20scanning%20privacy%20protection%20illustration&image_size=square_hd
+---
 ---
 
 # 双周刊 第8期：数字权利动态 (12/03)

@@ -2,15 +2,12 @@
 id: biweekly-2
 title: 双周刊 第2期：数字权利动态 (09/10)
 excerpt: 本期双周刊关注算法透明度、数据跨境流动和数字身份认证等热点话题。
-category: 双周刊
+type: biweekly
+issue: "2"
 readTime: 9 分钟
 author: 数字权利圆桌派
 date: 2024年09月10日
 image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=algorithm%20transparency%20and%20data%20privacy%20concept%20illustration&image_size=landscape_16_9
-tips:
-  title: 算法透明度
-  content: 了解算法如何影响你的生活，关注算法透明度议题。
-  image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=algorithm%20transparency%20icon&image_size=square
 ---
 
 # 双周刊 第2期：数字权利动态

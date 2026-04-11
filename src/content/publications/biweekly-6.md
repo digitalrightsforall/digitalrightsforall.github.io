@@ -2,15 +2,12 @@
 id: biweekly-6
 title: 双周刊 第6期：数字权利动态 (11/5)
 excerpt: 《个人信息保护法》两周年：个人意识提升，权利行使仍有阻碍；航旅数据追责，广东、北京相继发布典型案例
-category: 双周刊
+type: biweekly
+issue: "6"
 readTime: 10 分钟
 author: 数字权利圆桌派
 date: 2023年11月05日
 image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Digital%20rights%20newsletter%20issue%206%20cover%20with%20privacy%20protection%20theme&image_size=landscape_16_9
-tips:
-  title: 个保法两周年
-  content: 骚扰营销电话、App强制获取个人信息、强制刷脸、诈骗电话对自己了如指掌，你遇到过哪些？
-  image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Privacy%20protection%20tips%20illustration&image_size=square_hd
 ---
 
 # 双周刊 第6期：数字权利动态 (11/5)

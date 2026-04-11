@@ -2,15 +2,13 @@
 id: biweekly-3
 title: 双周刊 第3期：数字权利动态 (09/24)
 excerpt: 本期聚焦AI时代的隐私保护、儿童数字权利以及数据删除权的实践。
-category: 双周刊
+type: biweekly
+issue: "3"
 readTime: 10 分钟
 author: 数字权利圆桌派
 date: 2024年09月24日
 image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=AI%20privacy%20protection%20and%20children%20digital%20rights&image_size=landscape_16_9
-tips:
-  title: AI与隐私
-  content: 在享受AI便利的同时，不要忘记保护个人隐私。
-  image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=AI%20privacy%20icon&image_size=square
+---
 ---
 
 # 双周刊 第3期：数字权利动态

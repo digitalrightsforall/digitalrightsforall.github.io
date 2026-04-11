@@ -2,15 +2,13 @@
 id: biweekly-13
 title: 双周刊 第13期：数字权利动态 (02/18)
 excerpt: Sora文生视频大模型惊艳亮相；虚实难辨的后真相时代；AI对齐与人机能力边界；数字伴侣的桃色陷阱；数据托管模式反思
-category: 双周刊
+type: biweekly
+issue: "13"
 readTime: 12 分钟
 author: 数字权利圆桌派
 date: 2024年02月18日
 image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Digital%20rights%20newsletter%20issue%2013%20cover%20with%20Sora%20video%20generation%20theme&image_size=landscape_16_9
-tips:
-  title: 后真相时代
-  content: 每个人都要意识到身处虚实交织的时代。对接收到的所有信息，养成质疑、反思和批判的本能，切不可听风就是雨。
-  image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Post-truth%20era%20critical%20thinking%20illustration&image_size=square_hd
+---
 ---
 
 # 双周刊 第13期：数字权利动态 (02/18)

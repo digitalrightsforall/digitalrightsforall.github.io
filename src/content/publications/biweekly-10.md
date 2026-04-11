@@ -2,15 +2,13 @@
 id: biweekly-10
 title: 双周刊 第10期：数字权利动态 (12/29)
 excerpt: 个人数据的非法流动！依然猖狂，请保持警惕；你有权拒绝！不依赖扫码，不强制关注，不过度索取
-category: 双周刊
+type: biweekly
+issue: "10"
 readTime: 15 分钟
 author: 数字权利圆桌派
 date: 2023年12月29日
 image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Digital%20rights%20newsletter%20issue%2010%20cover%20with%20year%20end%20review%20theme&image_size=landscape_16_9
-tips:
-  title: 年终回顾
-  content: 2023年数据要素的元年，但个人数据的非法流动依旧猖狂！让我们一起回顾今年的治理重点
-  image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Year%20end%20review%20digital%20rights%20illustration&image_size=square_hd
+---
 ---
 
 # 双周刊 第10期：数字权利动态 (12/29)

@@ -2,15 +2,13 @@
 id: biweekly-12
 title: 双周刊 第12期：数字权利动态 (01/31)
 excerpt: 第三期工作坊回顾：机器社会与大模型；文汇报谈 AI 与人类智慧共生；瞰创新回应人工智能vs人类智能；书评《人工智能地图集》
-category: 双周刊
+type: biweekly
+issue: "12"
 readTime: 8 分钟
 author: 数字权利圆桌派
 date: 2024年01月31日
 image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Digital%20rights%20newsletter%20issue%2012%20cover%20with%20AI%20wisdom%20symbiosis%20theme&image_size=landscape_16_9
-tips:
-  title: 智慧共生
-  content: 在担心工作被AI代替前，人类必须要学会如何去使用AI。强化自身不会被AI代替的技能，例如批判、比较等思维能力。
-  image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=AI%20and%20human%20wisdom%20symbiosis%20illustration&image_size=square_hd
+---
 ---
 
 # 双周刊 第12期：数字权利动态 (01/31)

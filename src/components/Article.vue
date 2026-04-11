@@ -1,11 +1,39 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import VueMarkdown from 'vue-markdown-render';
-import { articles } from '@/content';
-import { ArrowLeft, Share2, Bookmark, MessageSquare, Lightbulb, ChevronRight } from 'lucide-vue-next';
+import { articles, publications, getArticleById, getPublicationById } from '@/content';
+import { ArrowLeft, Share2, Bookmark, MessageSquare, Lightbulb, ChevronRight, FileText } from 'lucide-vue-next';
+import { computed } from 'vue';
 
 const route = useRoute();
-const article = articles.find(a => a.id === route.params.id) || articles[0];
+
+// 优先从 publications 获取（资讯），其次从 articles 获取（知识库）
+const articleData = computed(() => {
+  const id = route.params.id as string;
+  return getPublicationById(id) || getArticleById(id);
+});
+
+// 判断是否为资讯（publications）
+const isPublication = computed(() => {
+  const id = route.params.id as string;
+  return id?.startsWith('biweekly') || id?.startsWith('monthly');
+});
+
+const backLink = computed(() => {
+  return isPublication.value ? '/news' : '/knowledge';
+});
+
+const backText = computed(() => {
+  return isPublication.value ? '返回资讯' : '返回知识库';
+});
+
+// 获取分类/类型标签
+const categoryLabel = computed(() => {
+  if (isPublication.value) {
+    return articleData.value?.type === 'biweekly' ? '双周刊' : '月度盘点';
+  }
+  return articleData.value?.category || '';
+});
 </script>
 
 <template>
@@ -15,8 +43,8 @@ const article = articles.find(a => a.id === route.params.id) || articles[0];
       <!-- Sidebar / TOC -->
       <aside class="lg:col-span-3 hidden lg:block">
         <div class="sticky top-32 space-y-10">
-          <router-link to="/knowledge" class="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary font-bold transition-colors">
-            <ArrowLeft :size="18" /> 返回知识库
+          <router-link :to="backLink" class="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary font-bold transition-colors">
+            <ArrowLeft :size="18" /> {{ backText }}
           </router-link>
           
           <div class="space-y-4">
@@ -31,14 +59,14 @@ const article = articles.find(a => a.id === route.params.id) || articles[0];
             </ul>
           </div>
 
-          <div v-if="article.tips" class="bg-tertiary-container/20 p-6 rounded-2xl border border-tertiary-container/30">
+            <div v-if="articleData?.tips && !isPublication" class="bg-tertiary-container/20 p-6 rounded-2xl border border-tertiary-container/30">
             <div class="flex items-center gap-2 text-tertiary font-black mb-4">
               <Lightbulb :size="20" />
               小贴士
             </div>
-            <h5 class="font-bold mb-2">{{ article.tips.title }}</h5>
-            <p class="text-xs text-on-surface-variant leading-relaxed mb-4">{{ article.tips.content }}</p>
-            <img :src="article.tips.image" alt="Tip" class="w-full rounded-lg" referrerPolicy="no-referrer" />
+            <h5 class="font-bold mb-2">{{ articleData.tips.title }}</h5>
+            <p class="text-xs text-on-surface-variant leading-relaxed mb-4">{{ articleData.tips.content }}</p>
+            <img :src="articleData.tips.image" alt="Tip" class="w-full rounded-lg" referrerPolicy="no-referrer" />
           </div>
         </div>
       </aside>
@@ -48,22 +76,22 @@ const article = articles.find(a => a.id === route.params.id) || articles[0];
         <article class="bg-white rounded-[2.5rem] p-8 md:p-16 shadow-sm border border-slate-100">
           <header class="mb-12">
             <div class="flex flex-wrap items-center gap-4 mb-6 text-sm font-bold text-on-surface-variant">
-              <span class="text-primary">{{ article.category }}</span>
+              <span class="text-primary">{{ categoryLabel }}</span>
               <span class="w-1 h-1 bg-outline-variant rounded-full"></span>
-              <span>{{ article.date }}</span>
+              <span>{{ articleData.date }}</span>
               <span class="w-1 h-1 bg-outline-variant rounded-full"></span>
-              <span>{{ article.readTime }} 阅读</span>
+              <span>{{ articleData.readTime }} 阅读</span>
             </div>
             <h1 class="text-4xl md:text-5xl font-black tracking-tighter leading-tight mb-8">
-              {{ article.title }}
+              {{ articleData.title }}
             </h1>
             <div class="flex items-center justify-between py-6 border-y border-slate-100">
               <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
-                  {{ article.author[0] }}
+                  {{ articleData.author[0] }}
                 </div>
                 <div>
-                  <div class="font-bold text-sm">{{ article.author }}</div>
+                  <div class="font-bold text-sm">{{ articleData.author }}</div>
                   <div class="text-xs text-on-surface-variant">致力于数字权利普及</div>
                 </div>
               </div>
@@ -79,7 +107,7 @@ const article = articles.find(a => a.id === route.params.id) || articles[0];
           </header>
 
           <div class="article-content">
-            <vue-markdown :source="article.content" />
+            <vue-markdown :source="articleData.content" />
           </div>
 
           <footer class="mt-16 pt-10 border-t border-slate-100">

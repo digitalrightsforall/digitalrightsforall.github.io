@@ -2,15 +2,13 @@
 id: biweekly-15
 title: 双周刊 第15期：数字权利动态 (03/18)
 excerpt: 两会热议AI治理：代表提案汇总、学者建议版《中国人工智能法》首发；AI骗术成315重点议题；离线权提案已立案；上海停车缴费「纯净码」面世
-category: 双周刊
+type: biweekly
+issue: "15"
 readTime: 12 分钟
 author: 数字权利圆桌派
 date: 2024年03月18日
 image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Digital%20rights%20newsletter%20issue%2015%20cover%20with%20AI%20governance%20and%20privacy%20protection%20theme&image_size=landscape_16_9
-tips:
-  title: 个人数据保护建议
-  content: 隐私政策未明示，不提供信息；非必要个人信息，不填写；小心处理「一键登录」请求；审慎管理应用权限；拒绝无关第三方应用的信息共享请求
-  image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Personal%20data%20protection%20tips%20illustration&image_size=square_hd
+---
 ---
 
 # 双周刊 第15期：数字权利动态 (03/18)

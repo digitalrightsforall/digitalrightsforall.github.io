@@ -2,15 +2,13 @@
 id: biweekly-7
 title: 双周刊 第7期：数字权利动态 (11/20)
 excerpt: 个人数据的围城：典型个人信息犯罪画像；日常中的AI：AI安全是近忧还是远虑？
-category: 双周刊
+type: biweekly
+issue: "7"
 readTime: 12 分钟
 author: 数字权利圆桌派
 date: 2023年11月20日
 image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Digital%20rights%20newsletter%20issue%207%20cover%20with%20AI%20safety%20theme&image_size=landscape_16_9
-tips:
-  title: AI安全讨论
-  content: 你认为AI安全是近忧还是远虑？是应该关注眼前问题还是未来风险？
-  image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=AI%20safety%20discussion%20illustration&image_size=square_hd
+---
 ---
 
 # 双周刊 第7期：数字权利动态 (11/20)
