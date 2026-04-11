@@ -1,7 +1,7 @@
 ---
 id: workshop-personal-data
 title: 我的数据去哪儿了？
-shortTitle: "个人数据的围城"工作坊
+shortTitle: 个人数据的围城工作坊
 type: personal-data
 goal: 了解个人数据的流动路径，学会检索自己的数据，行使法定权利保护自己的个人信息。
 description: 通过互动工作坊，手把手教你了解自己的数据在哪里，如何行使查阅权。
