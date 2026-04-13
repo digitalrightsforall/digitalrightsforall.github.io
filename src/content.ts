@@ -81,9 +81,14 @@ export interface Campaign {
   status: 'active' | 'completed';
   goal: string;
   participants: number;
-  outputs: string[];
+  outputs: {
+    name: string;
+    url: string;
+    type: 'pdf' | 'ppt' | 'video' | 'article';
+  }[];
   image: string;
   color: 'primary' | 'secondary' | 'tertiary';
+  wikiUrl?: string;
 }
 
 const eventModules = import.meta.glob('/src/content/events/*.md', { as: 'raw', eager: true }) as Record<string, string>;

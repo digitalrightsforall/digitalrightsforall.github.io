@@ -6,15 +6,15 @@ status: completed
 goal: 集结普通消费者，通过共创描绘能让消费者放心托管个人数据的第三方"受托者"，发出普通人的声音。
 participants: 68
 outputs:
-  - "个人数据受托者的职能"
-  - "如何令消费者放心"
-image: https://lh3.googleusercontent.com/aida-public/AB6AXuAtMdH0kfsdnJBhTUs5lYHUYWOY5GL7P0RVarvbAgCzRRCyXjHTrKHgMMvZVfAenaJmbIFHvvj5PYa88lk3jrPLIjMSJ0IEIOU1Slr4XsM7WDDu7v1etODCXWfxGQAG33MxlEgMeaQO-DYmWPIO3p2OXXVZwY3fYgIInGMk4IIY9fA9gyCYr-O90IQHqnZboGRGvSEWlk1ytI7x5-2d7mP174T1RjpwpmTF9PQCwFC86W9-D3t77nM0zhN1fr9JiTaFiFrMBUomOwi2
+  - name: 消费者放心的个人数据受托者报告
+    url: https://opendatachina.feishu.cn/docs/xdoc/FiQ6SDbcJ2oMsux5P1l4c10InPcWg
+    type: pdf
+wikiUrl: https://opendatachina.feishu.cn/wiki/GcfMwIbrmiDLHbks5OccTTkhnXy
+image: /images/campaign-trustee-cover.jpg
 color: primary
 ---
 
 # 消费者放心的个人数据受托者
-
-## 项目背景
 
 国家「数据二十条」中，首次提出了「受托者制度」，探索由受托者代表个人利益，监督市场主体对个人信息数据进行采集、加工、使用的机制。
 

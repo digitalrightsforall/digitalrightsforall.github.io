@@ -46,7 +46,7 @@ const pastCampaigns = campaigns.filter(c => c.status === 'completed');
                   <span class="font-bold">{{ activeCampaign.outputs.length }}项产出</span>
                 </div>
               </div>
-              <router-link to="/campaign" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary rounded-xl font-bold hover:shadow-lg transition-all inline-flex items-center gap-2">
+              <router-link :to="`/campaign/${activeCampaign.id}`" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary rounded-xl font-bold hover:shadow-lg transition-all inline-flex items-center gap-2">
                 查看详情 <ArrowRight :size="18" />
               </router-link>
             </div>
@@ -75,7 +75,8 @@ const pastCampaigns = campaigns.filter(c => c.status === 'completed');
         <div 
           v-for="campaign in pastCampaigns" 
           :key="campaign.id"
-          class="group bg-surface-container-lowest rounded-[2.5rem] overflow-hidden border border-outline-variant/10 hover:shadow-2xl transition-all duration-500"
+          class="group bg-surface-container-lowest rounded-[2.5rem] overflow-hidden border border-outline-variant/10 hover:shadow-2xl transition-all duration-500 cursor-pointer"
+          @click="$router.push(`/campaign/${campaign.id}`)"
         >
           <div class="h-48 overflow-hidden relative">
             <img 
