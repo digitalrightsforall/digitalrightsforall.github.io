@@ -141,10 +141,32 @@ const getOutputIcon = (type: string) => {
       </div>
 
       <!-- Articles Tab -->
-      <div v-if="activeTab === 'articles'" class="text-center py-20">
-        <div class="text-6xl mb-6">📝</div>
-        <h3 class="text-2xl font-bold mb-4">观点文章整理中</h3>
-        <p class="text-on-surface-variant">该板块内容正在整理中，敬请期待</p>
+      <div v-if="activeTab === 'articles'">
+        <div v-if="campaign.articles && campaign.articles.length > 0" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <a 
+            v-for="article in campaign.articles" 
+            :key="article.url"
+            :href="article.url"
+            target="_blank"
+            class="group p-6 bg-white rounded-2xl border border-outline-variant/10 hover:shadow-xl transition-all cursor-pointer"
+          >
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center text-2xl">
+                📝
+              </div>
+              <div class="flex-1">
+                <h4 class="font-bold mb-1 group-hover:text-primary transition-colors">{{ article.title }}</h4>
+                <span class="text-sm text-on-surface-variant">{{ article.date }}</span>
+              </div>
+              <ArrowRight :size="18" class="text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+            </div>
+          </a>
+        </div>
+        <div v-else class="text-center py-20">
+          <div class="text-6xl mb-6">📝</div>
+          <h3 class="text-2xl font-bold mb-4">观点文章整理中</h3>
+          <p class="text-on-surface-variant">该板块内容正在整理中，敬请期待</p>
+        </div>
       </div>
     </div>
 

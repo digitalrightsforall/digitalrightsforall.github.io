@@ -86,6 +86,16 @@ export interface Campaign {
     url: string;
     type: 'pdf' | 'ppt' | 'video' | 'article';
   }[];
+  articles?: {
+    title: string;
+    url: string;
+    date: string;
+  }[];
+  activities?: {
+    title: string;
+    url: string;
+    date: string;
+  }[];
   image: string;
   color: 'primary' | 'secondary' | 'tertiary';
   wikiUrl?: string;
