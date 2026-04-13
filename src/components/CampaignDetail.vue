@@ -106,7 +106,7 @@ const getOutputIcon = (type: string) => {
     <div class="max-w-7xl mx-auto px-6 mb-16">
       <!-- Intro Tab -->
       <div v-if="activeTab === 'intro'" class="bg-white rounded-[2.5rem] p-8 md:p-16 shadow-sm border border-slate-100">
-        <vue-markdown :source="campaign.content" />
+        <vue-markdown :source="campaign.content" class="campaign-content" />
       </div>
 
       <!-- Activities Tab -->
@@ -184,3 +184,80 @@ const getOutputIcon = (type: string) => {
     </div>
   </div>
 </template>
+
+<style>
+.campaign-content {
+  color: var(--on-surface-variant, #1a1a1a);
+  line-height: 1.7;
+}
+
+.campaign-content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  margin-top: 32px;
+  color: var(--on-surface, #1a1a1a);
+}
+
+.campaign-content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  color: var(--on-surface, #1a1a1a);
+  border-bottom: 2px solid var(--primary, #5e40e0);
+  padding-bottom: 8px;
+}
+
+.campaign-content h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  margin-top: 28px;
+  color: var(--on-surface, #1a1a1a);
+}
+
+.campaign-content p {
+  margin-bottom: 16px;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.campaign-content ul,
+.campaign-content ol {
+  margin-bottom: 16px;
+  padding-left: 24px;
+}
+
+.campaign-content li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.campaign-content ul li {
+  list-style-type: disc;
+}
+
+.campaign-content ol li {
+  list-style-type: decimal;
+}
+
+.campaign-content blockquote {
+  border-left: 4px solid var(--primary, #5e40e0);
+  padding: 16px 20px;
+  margin: 20px 0;
+  background-color: var(--surface-container-low, #f5f5f5);
+  font-style: italic;
+  color: var(--on-surface-variant, #666);
+}
+
+.campaign-content strong {
+  font-weight: 600;
+}
+
+.campaign-content hr {
+  margin: 32px 0;
+  border: none;
+  border-top: 1px solid var(--outline-variant, #e0e0e0);
+}
+</style>
