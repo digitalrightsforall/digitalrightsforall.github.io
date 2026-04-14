@@ -13,7 +13,7 @@ articles:
   - title: 知识工坊 #1：何为个人数据受托者
     url: https://opendatachina.feishu.cn/wiki/WfCIwYBoAiouMLkysSvcUQq0nRf
     date: 2024-08
-  - title: 知识工坊 #2：英国医疗健康领域探索
+  - title: 知识工坊 #2：英国医疗健康领域探索「放心」个人数据受托者的启示
     url: https://opendatachina.feishu.cn/wiki/FeHWw9ty0iTSA8kseK1cDYyPnzc
     date: 2024-09
   - title: 共创成果#1：个人数据受托者的职能
