@@ -61,15 +61,6 @@ const upcomingEvents = events.slice(0, 2);
                 <span class="font-bold">{{ activeCampaign.participants }}位普通人参与</span>
               </div>
             </div>
-            <div class="flex flex-wrap gap-3 mb-8">
-              <span 
-                v-for="output in activeCampaign.outputs" 
-                :key="output.name"
-                class="px-4 py-2 bg-white/10 rounded-full text-sm font-bold"
-              >
-                {{ output.name }}
-              </span>
-            </div>
             <router-link :to="`/campaign/${activeCampaign.id}`" class="inline-flex items-center gap-2 text-on-primary font-black text-lg hover:gap-4 transition-all">
               查看项目详情 <ArrowRight :size="20" />
             </router-link>
@@ -133,7 +124,7 @@ const upcomingEvents = events.slice(0, 2);
         <div class="text-center mb-16">
           <h2 class="text-3xl font-bold mb-4 flex items-center justify-center gap-3">
             <GraduationCap class="text-primary" :size="32" />
-            想了解更多？
+            想学习更多？
           </h2>
           <p class="text-on-surface-variant text-lg max-w-xl mx-auto">
             参加我们的互动工作坊，手把手教你保护自己的数字权利
@@ -205,7 +196,7 @@ const upcomingEvents = events.slice(0, 2);
             </span>
           </button>
 
-          <button class="group p-8 bg-white rounded-2xl hover:shadow-xl transition-all text-center">
+          <router-link to="/campaign" class="group p-8 bg-white rounded-2xl hover:shadow-xl transition-all text-center">
             <div class="w-16 h-16 bg-tertiary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <Target class="text-tertiary" :size="32" />
             </div>
@@ -214,7 +205,7 @@ const upcomingEvents = events.slice(0, 2);
             <span class="text-tertiary font-bold text-sm group-hover:gap-2 transition-all inline-flex items-center gap-1">
               了解更多 <ArrowRight :size="14" />
             </span>
-          </button>
+          </router-link>
         </div>
       </div>
     </section>
