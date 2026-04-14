@@ -47,7 +47,6 @@ const getOutputIcon = (type: string) => {
             >
               {{ campaign.status === 'active' ? '进行中' : campaign.year + '年' }}
             </span>
-            <span class="text-on-surface-variant text-sm font-bold">{{ campaign.year }}年</span>
           </div>
           
           <h1 class="text-4xl md:text-6xl font-black tracking-tighter mb-6">
