@@ -64,13 +64,13 @@ const upcomingEvents = events.slice(0, 2);
             <div class="flex flex-wrap gap-3 mb-8">
               <span 
                 v-for="output in activeCampaign.outputs" 
-                :key="output"
+                :key="output.name"
                 class="px-4 py-2 bg-white/10 rounded-full text-sm font-bold"
               >
-                {{ output }}
+                {{ output.name }}
               </span>
             </div>
-            <router-link to="/campaign" class="inline-flex items-center gap-2 text-on-primary font-black text-lg hover:gap-4 transition-all">
+            <router-link :to="`/campaign/${activeCampaign.id}`" class="inline-flex items-center gap-2 text-on-primary font-black text-lg hover:gap-4 transition-all">
               查看项目详情 <ArrowRight :size="20" />
             </router-link>
           </div>
