@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { ArrowRight, Users, FileText, GraduationCap, Target, Calendar, Sparkles } from 'lucide-vue-next';
-import { campaigns, publications, workshops, events } from '@/content';
+import { ArrowRight, Users, FileText, GraduationCap, Target, Calendar, Sparkles, Gamepad2, MessageSquare } from 'lucide-vue-next';
+import { roundtables, cocreations, guides, opinions } from '@/content';
 import { cn } from '@/lib/utils';
 
-const activeCampaign = campaigns.find(c => c.status === 'active') || campaigns[0];
-const latestPublications = publications.slice(0, 3);
-const upcomingEvents = events.slice(0, 2);
+const activeCocreation = cocreations.find(c => c.status === 'active') || cocreations[cocreations.length - 1];
+const latestOpinions = opinions.slice(0, 3);
+const latestRoundtables = roundtables.slice(0, 2);
+const latestGuides = guides.slice(0, 3);
 </script>
 
 <template>
@@ -51,25 +52,25 @@ const upcomingEvents = events.slice(0, 2);
               <Target :size="16" />
               当前进行中
             </div>
-            <h2 class="text-4xl md:text-5xl font-black mb-6">{{ activeCampaign.title }}</h2>
+            <h2 class="text-4xl md:text-5xl font-black mb-6">{{ activeCocreation.title }}</h2>
             <p class="text-on-primary/80 text-lg leading-relaxed mb-8 max-w-xl">
-              {{ activeCampaign.goal }}
+              {{ activeCocreation.goal }}
             </p>
             <div class="flex items-center gap-6 mb-8">
               <div class="flex items-center gap-2">
                 <Users :size="18" />
-                <span class="font-bold">{{ activeCampaign.participants }}位普通人参与</span>
+                <span class="font-bold">{{ activeCocreation.participants }}位普通人参与</span>
               </div>
             </div>
-            <router-link :to="`/campaign/${activeCampaign.id}`" class="inline-flex items-center gap-2 text-on-primary font-black text-lg hover:gap-4 transition-all">
+            <router-link :to="`/cocreation/${activeCocreation.id}`" class="inline-flex items-center gap-2 text-on-primary font-black text-lg hover:gap-4 transition-all">
               查看项目详情 <ArrowRight :size="20" />
             </router-link>
           </div>
           <div class="flex-1">
             <div class="aspect-video rounded-[2rem] overflow-hidden shadow-2xl">
               <img 
-                :src="activeCampaign.image" 
-                :alt="activeCampaign.title"
+                :src="activeCocreation.image" 
+                :alt="activeCocreation.title"
                 class="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
@@ -85,17 +86,17 @@ const upcomingEvents = events.slice(0, 2);
         <div class="flex items-center justify-between mb-12">
           <h2 class="text-3xl font-bold flex items-center gap-3">
             <FileText class="text-primary" :size="32" />
-            最近更新
+            最新观点
           </h2>
-          <router-link to="/news" class="text-primary font-bold hover:gap-2 transition-all inline-flex items-center gap-1">
+          <router-link to="/opinions" class="text-primary font-bold hover:gap-2 transition-all inline-flex items-center gap-1">
             查看全部 <ArrowRight :size="16" />
           </router-link>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <router-link 
-            v-for="pub in latestPublications" 
+            v-for="pub in latestOpinions" 
             :key="pub.id"
-            :to="`/news/${pub.id}`"
+            :to="`/opinions/${pub.id}`"
             class="group p-8 bg-white rounded-2xl hover:shadow-xl transition-all"
           >
             <span 
@@ -133,28 +134,28 @@ const upcomingEvents = events.slice(0, 2);
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div 
-            v-for="workshop in workshops" 
-            :key="workshop.id"
+            v-for="guide in latestGuides" 
+            :key="guide.id"
             class="group p-8 bg-surface-container-low rounded-2xl hover:shadow-xl transition-all"
           >
             <div class="text-4xl mb-4">
-              {{ workshop.type === 'personal-data' ? '📱' : workshop.type === 'algorithm' ? '⚖️' : '🤖' }}
+              {{ guide.type === 'personal-data' ? '📱' : guide.type === 'algorithm' ? '⚖️' : '🤖' }}
             </div>
             <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-              {{ workshop.shortTitle || workshop.title }}
+              {{ guide.shortTitle || guide.title }}
             </h3>
             <p class="text-on-surface-variant text-sm mb-4">
-              {{ workshop.goal }}
+              {{ guide.goal }}
             </p>
             <span class="text-xs font-bold text-primary">
-              {{ workshop.participants }}人参与
+              {{ guide.participants }}人参与
             </span>
           </div>
         </div>
 
         <div class="text-center">
-          <router-link to="/learn" class="inline-flex items-center gap-2 px-8 py-4 bg-primary text-on-primary rounded-xl font-bold hover:shadow-lg hover:-translate-y-1 transition-all">
-            探索数字素养 <ArrowRight :size="18" />
+          <router-link to="/guide" class="inline-flex items-center gap-2 px-8 py-4 bg-primary text-on-primary rounded-xl font-bold hover:shadow-lg hover:-translate-y-1 transition-all">
+            探索指北 <ArrowRight :size="18" />
           </router-link>
         </div>
       </div>
@@ -174,33 +175,33 @@ const upcomingEvents = events.slice(0, 2);
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <router-link to="/events" class="group p-8 bg-white rounded-2xl hover:shadow-xl transition-all text-center">
+          <router-link to="/roundtable" class="group p-8 bg-white rounded-2xl hover:shadow-xl transition-all text-center">
             <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <Calendar class="text-primary" :size="32" />
+              <MessageSquare class="text-primary" :size="32" />
             </div>
-            <h3 class="text-xl font-bold mb-2">参加活动</h3>
-            <p class="text-on-surface-variant text-sm mb-4">工作坊、圆桌派线下活动</p>
+            <h3 class="text-xl font-bold mb-2">圆桌派</h3>
+            <p class="text-on-surface-variant text-sm mb-4">专家分享与讨论</p>
             <span class="text-primary font-bold text-sm group-hover:gap-2 transition-all inline-flex items-center gap-1">
-              查看活动 <ArrowRight :size="14" />
+              查看全部 <ArrowRight :size="14" />
             </span>
           </router-link>
 
-          <button class="group p-8 bg-white rounded-2xl hover:shadow-xl transition-all text-center">
+          <router-link to="/play" class="group p-8 bg-white rounded-2xl hover:shadow-xl transition-all text-center">
             <div class="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <Users class="text-secondary" :size="32" />
+              <Gamepad2 class="text-secondary" :size="32" />
             </div>
-            <h3 class="text-xl font-bold mb-2">成为志愿者</h3>
-            <p class="text-on-surface-variant text-sm mb-4">用你的专业帮助社区</p>
+            <h3 class="text-xl font-bold mb-2">Play</h3>
+            <p class="text-on-surface-variant text-sm mb-4">互动体验与工具</p>
             <span class="text-secondary font-bold text-sm group-hover:gap-2 transition-all inline-flex items-center gap-1">
-              加入我们 <ArrowRight :size="14" />
+              探索体验 <ArrowRight :size="14" />
             </span>
-          </button>
+          </router-link>
 
-          <router-link to="/campaign" class="group p-8 bg-white rounded-2xl hover:shadow-xl transition-all text-center">
+          <router-link to="/cocreation" class="group p-8 bg-white rounded-2xl hover:shadow-xl transition-all text-center">
             <div class="w-16 h-16 bg-tertiary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <Target class="text-tertiary" :size="32" />
             </div>
-            <h3 class="text-xl font-bold mb-2">参与项目</h3>
+            <h3 class="text-xl font-bold mb-2">共创营</h3>
             <p class="text-on-surface-variant text-sm mb-4">加入行动项目共创</p>
             <span class="text-tertiary font-bold text-sm group-hover:gap-2 transition-all inline-flex items-center gap-1">
               了解更多 <ArrowRight :size="14" />

@@ -5,11 +5,11 @@
 <h1 align="center">普通人的数字权利</h1>
 
 <p align="center">
-一个致力于提升公众数字素养、守护个人数字权利的共创社区官网
+帮助每一个普通人在机器时代保护自己
 </p>
 
 <p align="center">
-<a href="https://digitalrightsforall.github.io">🌐 在线访问</a> · <a href="#技术栈">技术栈</a> · <a href="#本地开发">本地开发</a> · <a href="#内容管理">内容管理</a>
+<a href="https://putongren.org">🌐 在线访问</a> · <a href="#技术栈">技术栈</a> · <a href="#本地开发">本地开发</a> · <a href="#内容管理">内容管理</a>
 </p>
 
 ---
@@ -17,6 +17,16 @@
 ## 关于我们
 
 我们是一个致力于提升公众数字素养、守护个人数字权利的共创社区。通过知识普及、技术实验与社会倡导，让每一个人都能在数字时代有尊严地生活。
+
+## 五大板块
+
+| 板块 | 说明 | 内容类型 |
+|------|------|---------|
+| 🎙️ 圆桌派 | 讲座型活动回顾 | 专家分享与讨论 |
+| 🌱 共创营 | 黑客松与共创计划 | 行动项目共创 |
+| 📚 指北 | 学习资源 | 工作坊与工具 |
+| 💭 观点 | 深度分析与思考 | 文章与资讯 |
+| 🎮 Play | 互动体验 | 游戏与工具 |
 
 ## 技术栈
 
@@ -60,18 +70,15 @@ npm run lint       # TypeScript 类型检查
 
 | 路径 | 页面 | 说明 |
 |------|------|------|
-| `/` | Home | 首页 |
-| `/news` | NewsList | 资讯列表（双周刊/月度盘点） |
-| `/news/:id` | Article | 资讯详情 |
-| `/learn` | LearnIndex | 数字素养首页 |
-| `/learn/workshop/:id` | WorkshopDetail | 工作坊详情 |
-| `/campaign` | CampaignList | 行动项目列表 |
-| `/campaign/:id` | CampaignDetail | 行动项目详情 |
-| `/events` | Events | 活动列表 |
-| `/seasons` | Seasons | 主题季列表 |
-| `/knowledge` | Knowledge | 知识库列表 |
-| `/article/:id` | Article | 知识库文章详情 |
-| `/about` | About | 关于我们 |
+| `/` | 首页 | 内容瀑布流展示 |
+| `/roundtable` | 圆桌派 | 活动回顾列表 |
+| `/cocreation` | 共创营 | 共创项目列表 |
+| `/cocreation/:id` | 共创项目详情 | 项目详情页 |
+| `/guide` | 指北 | 学习资源列表 |
+| `/guide/:id` | 指北详情 | 工作坊详情 |
+| `/opinions` | 观点 | 文章列表 |
+| `/opinions/:id` | 文章详情 | 文章详情页 |
+| `/play` | Play | 互动体验列表 |
 
 ## 内容管理
 
@@ -79,14 +86,12 @@ npm run lint       # TypeScript 类型检查
 
 | 类型 | 目录 | 说明 |
 |------|------|------|
-| 资讯 | `publications/` | 双周刊、月度盘点 |
-| 工作坊 | `workshops/` | 数字素养工作坊 |
-| 行动项目 | `campaigns/` | 公众参与项目 |
-| 知识库 | `articles/` | 科普文章 |
-| 活动 | `events/` | 线下/线上活动 |
-| 主题季 | `seasons/` | 季度主题 |
+| 圆桌派 | `roundtable/` | 讲座型活动回顾 |
+| 共创营 | `cocreation/` | 共创项目 |
+| 指北 | `guide/` | 工作坊与工具 |
+| 观点 | `opinions/` | 文章与资讯 |
 
-详细的内容格式说明请参考 [CONTENT_GUIDE.md](./CONTENT_GUIDE.md) 和 [CONTENT_MANUAL.md](./CONTENT_MANUAL.md)。
+详细的内容格式说明请参考 [CONTENT_GUIDE.md](./CONTENT_GUIDE.md)。
 
 ## 设计规范
 
@@ -104,4 +109,4 @@ npm run lint       # TypeScript 类型检查
 
 ## 许可证
 
-© 2026 数字权利全民行社区. 保留所有权利.
+© 2026 普通人的数字权利. 保留所有权利.
