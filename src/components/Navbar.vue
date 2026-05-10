@@ -18,12 +18,11 @@ onUnmounted(() => {
 });
 
 const navLinks = [
-  { name: '首页', path: '/', icon: Shield },
-  { name: '资讯', path: '/news', icon: FileText },
-  { name: '数字素养', path: '/learn', icon: GraduationCap },
-  { name: '行动项目', path: '/campaign', icon: Target },
-  { name: '活动', path: '/events', icon: Users },
-  { name: '关于我们', path: '/about', icon: Info },
+  { name: '圆桌派', path: '/roundtable', icon: MessageSquare },
+  { name: '共创营', path: '/cocreation', icon: Target },
+  { name: '指北', path: '/guide', icon: GraduationCap },
+  { name: '观点', path: '/opinions', icon: FileText },
+  { name: 'Play', path: '/play', icon: Gamepad2 },
 ];
 </script>
 
