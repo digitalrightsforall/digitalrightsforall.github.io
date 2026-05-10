@@ -20,8 +20,7 @@ const footerLinks = [
             <span class="text-xl font-black tracking-tighter text-on-surface">普通人的数字权利</span>
           </router-link>
           <p class="text-on-surface-variant max-w-sm leading-relaxed mb-8">
-            我们是一个共创社区，致力于通过知识、工具与行动，
-            让每一个人都能在算法时代重获自由。
+            我们是共创社区，通过资讯、工作坊和行动项目，帮助每一个普通人在机器时代保护自己。
           </p>
           <div class="flex gap-4">
             <a href="#" class="p-3 rounded-xl bg-surface-container hover:bg-primary hover:text-white transition-all">
@@ -51,11 +50,11 @@ const footerLinks = [
 
       <div class="pt-10 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center gap-6">
         <p class="text-sm text-on-surface-variant font-medium">
-          © 2026 普通人的数字权利圆桌派. 保留所有权利.
+          © 2026 普通人的数字权利. 保留所有权利.
         </p>
         <div class="flex items-center gap-2 text-xs font-bold text-on-surface-variant uppercase tracking-widest">
           <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-          数字权利是基本人权
+          构建令人放心的数字时代
         </div>
       </div>
     </div>
