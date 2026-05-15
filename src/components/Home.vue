@@ -18,7 +18,7 @@ interface HomeItem {
   order: number;
 }
 
-function getFeaturedItems<T extends { homeFeatured?: boolean; homeOrder?: number; image?: string }>(items: T[], type: HomeItem['type'], getUrl: (item: T) => string): HomeItem[] {
+function getFeaturedItems<T extends { homeFeatured?: boolean; homeOrder?: number; image?: string; excerpt?: string; date?: string }>(items: T[], type: HomeItem['type'], getUrl: (item: T) => string): HomeItem[] {
   return items
     .filter(item => item.homeFeatured && isValidImage(item.image))
     .map(item => ({
@@ -26,12 +26,12 @@ function getFeaturedItems<T extends { homeFeatured?: boolean; homeOrder?: number
       id: item.id,
       title: item.title,
       description: item.description || item.goal,
-      excerpt: (item as any).excerpt,
+      excerpt: item.excerpt,
       goal: item.goal,
       image: item.image || '',
       url: getUrl(item),
       participants: item.participants,
-      date: (item as any).date,
+      date: item.date,
       order: item.homeOrder || 999,
     }))
     .sort((a, b) => a.order - b.order);

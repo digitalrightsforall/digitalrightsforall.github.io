@@ -26,7 +26,8 @@ let autoPlayInterval: ReturnType<typeof setInterval> | null = null;
 const getAllCarouselItems = computed<CarouselItem[]>(() => {
   const items: CarouselItem[] = [];
 
-  topics.filter(t => t.homeFeatured && isValidImage(t.image)).forEach(topic => {
+  topics.filter(t => t.homeFeatured).forEach(topic => {
+    if (!isValidImage(topic.image)) return;
     items.push({
       id: topic.id,
       type: 'topic',
@@ -38,7 +39,8 @@ const getAllCarouselItems = computed<CarouselItem[]>(() => {
     });
   });
 
-  projects.filter(p => p.homeFeatured && isValidImage(p.image)).forEach(project => {
+  projects.filter(p => p.homeFeatured).forEach(project => {
+    if (!isValidImage(project.image)) return;
     items.push({
       id: project.id,
       type: 'project',

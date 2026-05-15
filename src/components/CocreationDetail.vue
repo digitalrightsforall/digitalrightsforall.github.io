@@ -4,6 +4,7 @@ import { getCocreationById, getProjectById, parseContentLinks } from '@/content'
 import { Target, FileText, Users, Calendar, Trophy, Link2, ChevronRight, ExternalLink, BookOpen, ArrowRight } from 'lucide-vue-next';
 import { computed, ref } from 'vue';
 import VueMarkdown from 'vue-markdown-render';
+import { isValidImage } from '@/lib/utils';
 
 const route = useRoute();
 const item = computed(() => getCocreationById(route.params.id as string));

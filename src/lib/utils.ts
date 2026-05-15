@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function isValidImage(imageUrl?: string): boolean {
-  if (!imageUrl) return false;
+  if (!imageUrl) return true;
   const trimmedUrl = imageUrl.trim().toLowerCase();
   const placeholderPatterns = [
     'placeholder',
