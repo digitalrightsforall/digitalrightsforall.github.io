@@ -6,7 +6,6 @@ date: '2024.01.21'
 time: '14:00 - 17:00'
 location: '上海市'
 category: '工作坊'
-image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Machine%20society%20AI%20workshop%20cover%20with%20human%20AI%20coexistence%20theme&image_size=landscape_16_9'
 ---
 
 # 「机器社会：如何与大模型和自动化决策共存」工作坊

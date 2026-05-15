@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
-import { Menu, X, Shield, Users, Calendar, BookOpen, Info, FileText, GraduationCap, Target } from 'lucide-vue-next';
+import { Menu, X, Shield, MessageSquare, GraduationCap, Target, FileText, Gamepad2, BookOpen } from 'lucide-vue-next';
 
 const isScrolled = ref(false);
 const isMobileMenuOpen = ref(false);
@@ -18,6 +18,7 @@ onUnmounted(() => {
 });
 
 const navLinks = [
+  { name: '议题', path: '/topics', icon: BookOpen },
   { name: '圆桌派', path: '/roundtable', icon: MessageSquare },
   { name: '共创营', path: '/cocreation', icon: Target },
   { name: '指北', path: '/guide', icon: GraduationCap },
@@ -35,9 +36,7 @@ const navLinks = [
   >
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <router-link to="/" class="flex items-center gap-2 group">
-        <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg group-hover:rotate-12 transition-transform">
-          <Shield :size="24" />
-        </div>
+        <img src="/images/logo.png" alt="普通人的数字权利" class="w-10 h-10 object-contain group-hover:rotate-12 transition-transform" />
         <span class="text-xl font-black tracking-tighter text-on-surface">普通人的数字权利</span>
       </router-link>
 

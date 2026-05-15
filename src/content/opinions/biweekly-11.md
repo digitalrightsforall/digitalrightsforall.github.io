@@ -7,7 +7,6 @@ issue: "11"
 readTime: 10 分钟
 author: 数字权利圆桌派
 date: 2024年01月14日
-image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Digital%20rights%20newsletter%20issue%2011%20cover%20with%20AI%20and%20human%20coexistence%20theme&image_size=landscape_16_9
 ---
 ---
 

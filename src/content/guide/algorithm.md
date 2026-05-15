@@ -14,7 +14,6 @@ materials:
   - name: 工作坊PPT
     url: https://opendatachina.feishu.cn/docx/OfCkddyHHozSlCxYeqxcHc7hnOg
     type: ppt
-image: /workshop-algorithm-cover.JPEG
 color: secondary
 ---
 

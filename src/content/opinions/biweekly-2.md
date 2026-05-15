@@ -7,7 +7,6 @@ issue: "2"
 readTime: 9 分钟
 author: 数字权利圆桌派
 date: 2024年09月10日
-image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=algorithm%20transparency%20and%20data%20privacy%20concept%20illustration&image_size=landscape_16_9
 ---
 
 # 双周刊 第2期：数字权利动态

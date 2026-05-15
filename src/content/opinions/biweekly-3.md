@@ -7,7 +7,6 @@ issue: "3"
 readTime: 10 分钟
 author: 数字权利圆桌派
 date: 2024年09月24日
-image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=AI%20privacy%20protection%20and%20children%20digital%20rights&image_size=landscape_16_9
 ---
 ---
 

@@ -1,12 +1,57 @@
 <script setup lang="ts">
-import { ArrowRight, Users, FileText, GraduationCap, Target, Calendar, Sparkles, Gamepad2, MessageSquare } from 'lucide-vue-next';
-import { roundtables, cocreations, guides, opinions } from '@/content';
-import { cn } from '@/lib/utils';
+import { ArrowRight, FileText, GraduationCap, Gamepad2, MessageSquare } from 'lucide-vue-next';
+import { guides, opinions } from '@/content';
+import HomeCarousel from './HomeCarousel.vue';
 
-const activeCocreation = cocreations.find(c => c.status === 'active') || cocreations[cocreations.length - 1];
-const latestOpinions = opinions.slice(0, 3);
-const latestRoundtables = roundtables.slice(0, 2);
-const latestGuides = guides.slice(0, 3);
+interface HomeItem {
+  type: 'cocreation' | 'guide' | 'opinion' | 'roundtable' | 'play';
+  id: string;
+  title: string;
+  description?: string;
+  excerpt?: string;
+  goal?: string;
+  image: string;
+  url: string;
+  participants?: number;
+  date?: string;
+  order: number;
+}
+
+function getFeaturedItems<T extends { homeFeatured?: boolean; homeOrder?: number }>(items: T[], type: HomeItem['type'], getUrl: (item: T) => string): HomeItem[] {
+  return items
+    .filter(item => item.homeFeatured)
+    .map(item => ({
+      type,
+      id: item.id,
+      title: item.title,
+      description: item.description || item.goal,
+      excerpt: (item as any).excerpt,
+      goal: item.goal,
+      image: item.image,
+      url: getUrl(item),
+      participants: item.participants,
+      date: (item as any).date,
+      order: item.homeOrder || 999,
+    }))
+    .sort((a, b) => a.order - b.order);
+}
+
+const featuredGuides = getFeaturedItems(guides, 'guide', (g) => g.feishuUrl);
+const featuredOpinions = getFeaturedItems(opinions, 'opinion', (o) => `/opinions/${o.id}`);
+
+const latestOpinions = featuredOpinions.length >= 3 
+  ? featuredOpinions.slice(0, 3) 
+  : [
+      ...featuredOpinions,
+      ...opinions.filter(o => !o.homeFeatured).slice(0, 3 - featuredOpinions.length)
+    ];
+
+const latestGuides = featuredGuides.length >= 3
+  ? featuredGuides.slice(0, 3)
+  : [
+      ...featuredGuides,
+      ...guides.filter(g => !g.homeFeatured).slice(0, 3 - featuredGuides.length)
+    ];
 </script>
 
 <template>
@@ -33,60 +78,26 @@ const latestGuides = guides.slice(0, 3);
           帮助每一个普通人在机器时代保护自己。
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-          <router-link to="/campaign" class="w-full sm:w-auto px-10 py-5 bg-primary text-on-primary rounded-2xl font-black text-lg hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2 group">
+          <router-link to="/cocreation" class="w-full sm:w-auto px-10 py-5 bg-primary text-on-primary rounded-2xl font-black text-lg hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2 group">
             了解我们在做什么 <ArrowRight :size="20" class="group-hover:translate-x-1 transition-transform" />
           </router-link>
-          <router-link to="/about" class="w-full sm:w-auto px-10 py-5 bg-white border-2 border-outline-variant/30 text-on-surface rounded-2xl font-black text-lg hover:bg-surface-container transition-all">
+          <router-link to="/guide" class="w-full sm:w-auto px-10 py-5 bg-white border-2 border-outline-variant/30 text-on-surface rounded-2xl font-black text-lg hover:bg-surface-container transition-all">
             了解更多
           </router-link>
         </div>
       </div>
     </section>
 
-    <!-- Module 1: What we're doing (Current Campaign) -->
-    <section class="py-20 px-6 bg-primary text-on-primary">
-      <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row items-center gap-12">
-          <div class="flex-1">
-            <div class="flex items-center gap-2 text-sm font-black uppercase tracking-widest mb-4 opacity-80">
-              <Target :size="16" />
-              当前进行中
-            </div>
-            <h2 class="text-4xl md:text-5xl font-black mb-6">{{ activeCocreation.title }}</h2>
-            <p class="text-on-primary/80 text-lg leading-relaxed mb-8 max-w-xl">
-              {{ activeCocreation.goal }}
-            </p>
-            <div class="flex items-center gap-6 mb-8">
-              <div class="flex items-center gap-2">
-                <Users :size="18" />
-                <span class="font-bold">{{ activeCocreation.participants }}位普通人参与</span>
-              </div>
-            </div>
-            <router-link :to="`/cocreation/${activeCocreation.id}`" class="inline-flex items-center gap-2 text-on-primary font-black text-lg hover:gap-4 transition-all">
-              查看项目详情 <ArrowRight :size="20" />
-            </router-link>
-          </div>
-          <div class="flex-1">
-            <div class="aspect-video rounded-[2rem] overflow-hidden shadow-2xl">
-              <img 
-                :src="activeCocreation.image" 
-                :alt="activeCocreation.title"
-                class="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Module 1: Featured Carousel -->
+    <HomeCarousel />
 
-    <!-- Module 2: Latest News -->
+    <!-- Module 2: Featured Opinions -->
     <section class="py-20 px-6 bg-surface-container-low">
       <div class="max-w-7xl mx-auto">
         <div class="flex items-center justify-between mb-12">
           <h2 class="text-3xl font-bold flex items-center gap-3">
             <FileText class="text-primary" :size="32" />
-            最新观点
+            推荐阅读
           </h2>
           <router-link to="/opinions" class="text-primary font-bold hover:gap-2 transition-all inline-flex items-center gap-1">
             查看全部 <ArrowRight :size="16" />
@@ -96,17 +107,9 @@ const latestGuides = guides.slice(0, 3);
           <router-link 
             v-for="pub in latestOpinions" 
             :key="pub.id"
-            :to="`/opinions/${pub.id}`"
+            :to="pub.url"
             class="group p-8 bg-white rounded-2xl hover:shadow-xl transition-all"
           >
-            <span 
-              :class="[
-                'inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4',
-                pub.type === 'biweekly' ? 'bg-secondary/10 text-secondary' : 'bg-tertiary/10 text-tertiary'
-              ]"
-            >
-              {{ pub.type === 'biweekly' ? '双周刊' : '月度盘点' }}
-            </span>
             <h3 class="text-lg font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
               {{ pub.title }}
             </h3>
@@ -133,24 +136,26 @@ const latestGuides = guides.slice(0, 3);
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          <div 
+          <a 
             v-for="guide in latestGuides" 
             :key="guide.id"
+            :href="guide.url"
+            target="_blank"
             class="group p-8 bg-surface-container-low rounded-2xl hover:shadow-xl transition-all"
           >
             <div class="text-4xl mb-4">
-              {{ guide.type === 'personal-data' ? '📱' : guide.type === 'algorithm' ? '⚖️' : '🤖' }}
+              {{ guide.type === 'guide' ? '📚' : '📱' }}
             </div>
             <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-              {{ guide.shortTitle || guide.title }}
+              {{ guide.title }}
             </h3>
             <p class="text-on-surface-variant text-sm mb-4">
-              {{ guide.goal }}
+              {{ guide.description }}
             </p>
             <span class="text-xs font-bold text-primary">
               {{ guide.participants }}人参与
             </span>
-          </div>
+          </a>
         </div>
 
         <div class="text-center">

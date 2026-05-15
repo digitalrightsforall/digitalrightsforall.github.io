@@ -31,12 +31,13 @@ import { GraduationCap } from 'lucide-vue-next';
               <span class="text-xs font-bold text-primary">
                 {{ guide.participants }}人参与
               </span>
-              <router-link 
-                :to="`/guide/${guide.id}`"
+              <a 
+                :href="guide.feishuUrl"
+                target="_blank"
                 class="text-sm font-bold text-primary hover:gap-2 transition-all inline-flex items-center gap-1"
               >
                 查看详情 →
-              </router-link>
+              </a>
             </div>
           </div>
         </div>

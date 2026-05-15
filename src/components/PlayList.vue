@@ -3,28 +3,28 @@ import { Gamepad2, ExternalLink } from 'lucide-vue-next';
 
 const playItems = [
   {
-    id: 'digital-rights-mbti',
-    title: '数字人格 MBTI',
-    description: '通过24道情境测试，深度解析你的数字主权、算法信任、代理授权与能动性。',
-    type: 'assessment',
-    url: 'https://digitalrights-mbti.vercel.app',
-    image: 'https://images.unsplash.com/photo-1634942537034-2531766767d1?w=600'
+    id: 'survival-of-the-best-fit',
+    title: 'Survival of the Best Fit',
+    description: '探索算法对就业市场的影响。',
+    type: 'game',
+    url: 'https://putongren.org/survivalofthebestfit-zh_CN/',
+    image: '/images/play-mbti.png'
   },
   {
     id: 'can-you-break-the-algorithm',
     title: 'Can You Break The Algorithm',
     description: '挑战算法，看看你能否突破信息茧房。',
     type: 'game',
-    url: 'https://can-you-break-the-algorithm-zh-cn.vercel.app',
-    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600'
+    url: 'https://putongren.org/can-you-break-the-algorithm-zh_CN/zh.html#/',
+    image: '/images/play-algorithm.png'
   },
   {
-    id: 'survival-of-the-best-fit',
-    title: 'Survival of the Best Fit',
-    description: '探索算法对就业市场的影响。',
-    type: 'game',
-    url: 'https://survivalofthebestfit-zh-cn.vercel.app',
-    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600'
+    id: 'digital-rights-mbti',
+    title: '数字灵魂 MBTI',
+    description: '通过24道情境测试，深度解析你的数字主权、算法信任、代理授权与能动性。',
+    type: 'assessment',
+    url: 'https://persona.putongren.org/',
+    image: '/images/play-survival.png'
   }
 ];
 </script>

@@ -7,7 +7,6 @@ issue: "14"
 readTime: 10 分钟
 author: 数字权利圆桌派
 date: 2024年03月03日
-image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Digital%20rights%20newsletter%20issue%2014%20cover%20with%20AI%20resurrection%20and%20offline%20rights%20theme&image_size=landscape_16_9
 ---
 ---
 

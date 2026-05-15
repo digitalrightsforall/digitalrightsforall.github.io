@@ -7,7 +7,6 @@ issue: "6"
 readTime: 10 分钟
 author: 数字权利圆桌派
 date: 2023年11月05日
-image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Digital%20rights%20newsletter%20issue%206%20cover%20with%20privacy%20protection%20theme&image_size=landscape_16_9
 ---
 
 # 双周刊 第6期：数字权利动态 (11/5)

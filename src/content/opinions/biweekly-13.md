@@ -7,7 +7,6 @@ issue: "13"
 readTime: 12 分钟
 author: 数字权利圆桌派
 date: 2024年02月18日
-image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Digital%20rights%20newsletter%20issue%2013%20cover%20with%20Sora%20video%20generation%20theme&image_size=landscape_16_9
 ---
 ---
 

@@ -7,7 +7,6 @@ issue: "1"
 date: 2024年08月24日
 readTime: 8 分钟
 author: 数字权利圆桌派
-image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=digital%20rights%20newsletter%20cover%20with%20shield%20icon%20and%20newspaper%20theme&image_size=landscape_16_9
 ---
 
 # 双周刊 第1期：数字权利动态

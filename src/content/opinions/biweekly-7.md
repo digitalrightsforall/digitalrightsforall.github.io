@@ -7,7 +7,6 @@ issue: "7"
 readTime: 12 分钟
 author: 数字权利圆桌派
 date: 2023年11月20日
-image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Digital%20rights%20newsletter%20issue%207%20cover%20with%20AI%20safety%20theme&image_size=landscape_16_9
 ---
 ---
 

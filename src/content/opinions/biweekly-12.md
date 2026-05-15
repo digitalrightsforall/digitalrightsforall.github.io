@@ -7,7 +7,6 @@ issue: "12"
 readTime: 8 分钟
 author: 数字权利圆桌派
 date: 2024年01月31日
-image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Digital%20rights%20newsletter%20issue%2012%20cover%20with%20AI%20wisdom%20symbiosis%20theme&image_size=landscape_16_9
 ---
 ---
 

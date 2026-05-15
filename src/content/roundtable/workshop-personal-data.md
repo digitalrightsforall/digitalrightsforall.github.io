@@ -6,7 +6,6 @@ date: '2023.11.21'
 time: '14:00 - 17:00'
 location: '上海市'
 category: '工作坊'
-image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Personal%20data%20fortress%20workshop%20cover%20with%20digital%20privacy%20theme&image_size=landscape_16_9'
 ---
 
 # 「个人数据的围城」工作坊

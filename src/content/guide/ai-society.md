@@ -14,7 +14,6 @@ materials:
   - name: 工作坊PPT
     url: https://opendatachina.feishu.cn/docx/MzUxdcxLWoMTDmxjvWQcBaz5nMb
     type: ppt
-image: /workshop-machinesociety-cover.JPEG
 color: tertiary
 ---
 

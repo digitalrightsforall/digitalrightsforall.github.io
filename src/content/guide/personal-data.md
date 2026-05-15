@@ -14,7 +14,6 @@ materials:
   - name: 工作坊PPT
     url: https://opendatachina.feishu.cn/docx/OKEidw7fzoVl3pxUqQHcuJE5nEW
     type: ppt
-image: /workshop-personaldata-cover.JPEG
 color: primary
 ---
 

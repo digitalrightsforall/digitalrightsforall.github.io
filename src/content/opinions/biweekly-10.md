@@ -7,7 +7,6 @@ issue: "10"
 readTime: 15 分钟
 author: 数字权利圆桌派
 date: 2023年12月29日
-image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Digital%20rights%20newsletter%20issue%2010%20cover%20with%20year%20end%20review%20theme&image_size=landscape_16_9
 ---
 ---
 

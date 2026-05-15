@@ -7,7 +7,6 @@ issue: "5"
 readTime: 9 分钟
 author: 数字权利圆桌派
 date: 2024年10月22日
-image: https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=social%20media%20privacy%20settings%20and%20app%20permission%20management&image_size=landscape_16_9
 ---
 ---
 

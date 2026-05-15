@@ -6,7 +6,6 @@ date: '2023.12.15'
 time: '14:00 - 17:00'
 location: '上海市'
 category: '工作坊'
-image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Algorithm%20decision%20making%20workshop%20cover%20with%20digital%20ethics%20theme&image_size=landscape_16_9'
 ---
 
 # 「我们身边的算法决策」工作坊
