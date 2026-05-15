@@ -1,29 +1,41 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from './components/Home.vue';
-import Events from './components/Events.vue';
-import Seasons from './components/Seasons.vue';
-import Knowledge from './components/Knowledge.vue';
-import Article from './components/Article.vue';
-import NewsList from './components/NewsList.vue';
-import LearnIndex from './components/LearnIndex.vue';
-import WorkshopDetail from './components/WorkshopDetail.vue';
-import CampaignList from './components/CampaignList.vue';
-import CampaignDetail from './components/CampaignDetail.vue';
+import RoundtableList from './components/RoundtableList.vue';
+import RoundtableDetail from './components/RoundtableDetail.vue';
+import CocreationList from './components/CocreationList.vue';
+import CocreationDetail from './components/CocreationDetail.vue';
+import GuideIndex from './components/GuideIndex.vue';
+import GuideDetail from './components/GuideDetail.vue';
+import OpinionsList from './components/OpinionsList.vue';
+import OpinionDetail from './components/OpinionDetail.vue';
+import PlayList from './components/PlayList.vue';
 import About from './components/About.vue';
+import TopicList from './components/TopicList.vue';
+import TopicDetail from './components/TopicDetail.vue';
+import ProjectDetail from './components/ProjectDetail.vue';
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/news', component: NewsList },
-  { path: '/news/:id', component: Article },
-  { path: '/learn', component: LearnIndex },
-  { path: '/learn/workshop/:id', component: WorkshopDetail },
-  { path: '/campaign', component: CampaignList },
-  { path: '/campaign/:id', component: CampaignDetail },
-  { path: '/events', component: Events },
-  { path: '/seasons', component: Seasons },
-  { path: '/knowledge', component: Knowledge },
+  
+  { path: '/roundtable', component: RoundtableList },
+  { path: '/roundtable/:id', component: RoundtableDetail },
+  
+  { path: '/cocreation', component: CocreationList },
+  { path: '/cocreation/:id', component: CocreationDetail },
+  
+  { path: '/guide', component: GuideIndex },
+  { path: '/guide/:id', component: GuideDetail },
+  
+  { path: '/opinions', component: OpinionsList },
+  { path: '/opinions/:id', component: OpinionDetail },
+  
+  { path: '/play', component: PlayList },
+  
   { path: '/about', component: About },
-  { path: '/article/:id', component: Article },
+  
+  { path: '/topics', component: TopicList },
+  { path: '/topic/:id', component: TopicDetail },
+  { path: '/project/:id', component: ProjectDetail },
 ];
 
 const router = createRouter({

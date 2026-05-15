@@ -1,50 +1,59 @@
 <script setup lang="ts">
-import { Github, Twitter, Mail, Shield, ArrowUpRight } from 'lucide-vue-next';
-
 const footerLinks = [
-  { title: '资源', links: ['知识库', '主题季', '社区活动', '常见问题'] },
-  { title: '关于', links: ['我们的愿景', '核心团队', '合作伙伴', '加入我们'] },
-  { title: '法律', links: ['隐私政策', '服务条款', '权利声明', '免责声明'] },
+  { title: '导航', links: [
+    { name: '圆桌派', path: '/roundtable' },
+    { name: '共创营', path: '/cocreation' },
+    { name: '指北', path: '/guide' },
+    { name: '观点', path: '/opinions' },
+    { name: 'Play', path: '/play' },
+  ]},
+];
+
+const socialLinks = [
+  { name: 'Github', href: 'https://github.com/digitalrightsforall?view_as=public', iconClass: 'ri-github-fill' },
+  { name: '微博', href: '#', iconClass: 'ri-weibo-fill' },
+  { name: '抖音', href: '#', iconClass: 'ri-tiktok-fill' },
+  { name: '邮箱', href: 'mailto:digitalrights@opendatachina.org', iconClass: 'ri-mail-line' },
 ];
 </script>
 
 <template>
   <footer class="bg-surface-container-lowest border-t border-outline-variant/10 pt-20 pb-10 px-6">
     <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-20">
-        <div class="lg:col-span-2">
+      <div class="flex flex-col lg:flex-row gap-12 mb-20">
+        <div class="flex-1">
           <router-link to="/" class="flex items-center gap-2 mb-6">
-            <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg">
-              <Shield :size="24" />
-            </div>
+            <img src="/images/logo.png" alt="普通人的数字权利" class="w-10 h-10 object-contain" />
             <span class="text-xl font-black tracking-tighter text-on-surface">普通人的数字权利</span>
           </router-link>
           <p class="text-on-surface-variant max-w-sm leading-relaxed mb-8">
             我们是共创社区，通过资讯、工作坊和行动项目，帮助每一个普通人在机器时代保护自己。
           </p>
           <div class="flex gap-4">
-            <a href="#" class="p-3 rounded-xl bg-surface-container hover:bg-primary hover:text-white transition-all">
-              <Twitter :size="18" />
-            </a>
-            <a href="#" class="p-3 rounded-xl bg-surface-container hover:bg-primary hover:text-white transition-all">
-              <Github :size="18" />
-            </a>
-            <a href="#" class="p-3 rounded-xl bg-surface-container hover:bg-primary hover:text-white transition-all">
-              <Mail :size="18" />
+            <a 
+              v-for="social in socialLinks" 
+              :key="social.name"
+              :href="social.href"
+              target="_blank"
+              class="p-3 rounded-xl bg-surface-container hover:bg-primary hover:text-white transition-all"
+              :title="social.name"
+            >
+              <i :class="social.iconClass" class="text-lg"></i>
             </a>
           </div>
         </div>
 
-        <div v-for="section in footerLinks" :key="section.title">
-          <h4 class="text-sm font-black uppercase tracking-widest text-on-surface mb-6">{{ section.title }}</h4>
-          <ul class="space-y-4">
-            <li v-for="link in section.links" :key="link">
-              <a href="#" class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2 group">
-                {{ link }}
-                <ArrowUpRight :size="14" class="opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
-            </li>
-          </ul>
+        <div class="flex flex-wrap items-start gap-8 lg:gap-16">
+          <div v-for="section in footerLinks" :key="section.title">
+            <h4 class="text-sm font-black uppercase tracking-widest text-on-surface mb-4">{{ section.title }}</h4>
+            <ul class="flex flex-wrap gap-x-6 gap-y-3">
+              <li v-for="link in section.links" :key="link.name">
+                <router-link :to="link.path" class="text-on-surface-variant hover:text-primary transition-colors">
+                  {{ link.name }}
+                </router-link>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 

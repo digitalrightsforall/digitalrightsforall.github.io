@@ -1,11 +1,57 @@
 <script setup lang="ts">
-import { ArrowRight, Users, FileText, GraduationCap, Target, Calendar, Sparkles } from 'lucide-vue-next';
-import { campaigns, publications, workshops, events } from '@/content';
-import { cn } from '@/lib/utils';
+import { ArrowRight, FileText, GraduationCap, Gamepad2, MessageSquare } from 'lucide-vue-next';
+import { guides, opinions } from '@/content';
+import HomeCarousel from './HomeCarousel.vue';
 
-const activeCampaign = campaigns.find(c => c.status === 'active') || campaigns[0];
-const latestPublications = publications.slice(0, 3);
-const upcomingEvents = events.slice(0, 2);
+interface HomeItem {
+  type: 'cocreation' | 'guide' | 'opinion' | 'roundtable' | 'play';
+  id: string;
+  title: string;
+  description?: string;
+  excerpt?: string;
+  goal?: string;
+  image: string;
+  url: string;
+  participants?: number;
+  date?: string;
+  order: number;
+}
+
+function getFeaturedItems<T extends { homeFeatured?: boolean; homeOrder?: number }>(items: T[], type: HomeItem['type'], getUrl: (item: T) => string): HomeItem[] {
+  return items
+    .filter(item => item.homeFeatured)
+    .map(item => ({
+      type,
+      id: item.id,
+      title: item.title,
+      description: item.description || item.goal,
+      excerpt: (item as any).excerpt,
+      goal: item.goal,
+      image: item.image,
+      url: getUrl(item),
+      participants: item.participants,
+      date: (item as any).date,
+      order: item.homeOrder || 999,
+    }))
+    .sort((a, b) => a.order - b.order);
+}
+
+const featuredGuides = getFeaturedItems(guides, 'guide', (g) => g.feishuUrl);
+const featuredOpinions = getFeaturedItems(opinions, 'opinion', (o) => `/opinions/${o.id}`);
+
+const latestOpinions = featuredOpinions.length >= 3 
+  ? featuredOpinions.slice(0, 3) 
+  : [
+      ...featuredOpinions,
+      ...opinions.filter(o => !o.homeFeatured).slice(0, 3 - featuredOpinions.length)
+    ];
+
+const latestGuides = featuredGuides.length >= 3
+  ? featuredGuides.slice(0, 3)
+  : [
+      ...featuredGuides,
+      ...guides.filter(g => !g.homeFeatured).slice(0, 3 - featuredGuides.length)
+    ];
 </script>
 
 <template>
@@ -32,80 +78,38 @@ const upcomingEvents = events.slice(0, 2);
           帮助每一个普通人在机器时代保护自己。
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-          <router-link to="/campaign" class="w-full sm:w-auto px-10 py-5 bg-primary text-on-primary rounded-2xl font-black text-lg hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2 group">
+          <router-link to="/cocreation" class="w-full sm:w-auto px-10 py-5 bg-primary text-on-primary rounded-2xl font-black text-lg hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2 group">
             了解我们在做什么 <ArrowRight :size="20" class="group-hover:translate-x-1 transition-transform" />
           </router-link>
-          <router-link to="/about" class="w-full sm:w-auto px-10 py-5 bg-white border-2 border-outline-variant/30 text-on-surface rounded-2xl font-black text-lg hover:bg-surface-container transition-all">
+          <router-link to="/guide" class="w-full sm:w-auto px-10 py-5 bg-white border-2 border-outline-variant/30 text-on-surface rounded-2xl font-black text-lg hover:bg-surface-container transition-all">
             了解更多
           </router-link>
         </div>
       </div>
     </section>
 
-    <!-- Module 1: What we're doing (Current Campaign) -->
-    <section class="py-20 px-6 bg-primary text-on-primary">
-      <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row items-center gap-12">
-          <div class="flex-1">
-            <div class="flex items-center gap-2 text-sm font-black uppercase tracking-widest mb-4 opacity-80">
-              <Target :size="16" />
-              当前进行中
-            </div>
-            <h2 class="text-4xl md:text-5xl font-black mb-6">{{ activeCampaign.title }}</h2>
-            <p class="text-on-primary/80 text-lg leading-relaxed mb-8 max-w-xl">
-              {{ activeCampaign.goal }}
-            </p>
-            <div class="flex items-center gap-6 mb-8">
-              <div class="flex items-center gap-2">
-                <Users :size="18" />
-                <span class="font-bold">{{ activeCampaign.participants }}位普通人参与</span>
-              </div>
-            </div>
-            <router-link :to="`/campaign/${activeCampaign.id}`" class="inline-flex items-center gap-2 text-on-primary font-black text-lg hover:gap-4 transition-all">
-              查看项目详情 <ArrowRight :size="20" />
-            </router-link>
-          </div>
-          <div class="flex-1">
-            <div class="aspect-video rounded-[2rem] overflow-hidden shadow-2xl">
-              <img 
-                :src="activeCampaign.image" 
-                :alt="activeCampaign.title"
-                class="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Module 1: Featured Carousel -->
+    <HomeCarousel />
 
-    <!-- Module 2: Latest News -->
+    <!-- Module 2: Featured Opinions -->
     <section class="py-20 px-6 bg-surface-container-low">
       <div class="max-w-7xl mx-auto">
         <div class="flex items-center justify-between mb-12">
           <h2 class="text-3xl font-bold flex items-center gap-3">
             <FileText class="text-primary" :size="32" />
-            最近更新
+            推荐阅读
           </h2>
-          <router-link to="/news" class="text-primary font-bold hover:gap-2 transition-all inline-flex items-center gap-1">
+          <router-link to="/opinions" class="text-primary font-bold hover:gap-2 transition-all inline-flex items-center gap-1">
             查看全部 <ArrowRight :size="16" />
           </router-link>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <router-link 
-            v-for="pub in latestPublications" 
+            v-for="pub in latestOpinions" 
             :key="pub.id"
-            :to="`/news/${pub.id}`"
+            :to="pub.url"
             class="group p-8 bg-white rounded-2xl hover:shadow-xl transition-all"
           >
-            <span 
-              :class="[
-                'inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4',
-                pub.type === 'biweekly' ? 'bg-secondary/10 text-secondary' : 'bg-tertiary/10 text-tertiary'
-              ]"
-            >
-              {{ pub.type === 'biweekly' ? '双周刊' : '月度盘点' }}
-            </span>
             <h3 class="text-lg font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
               {{ pub.title }}
             </h3>
@@ -132,29 +136,31 @@ const upcomingEvents = events.slice(0, 2);
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          <div 
-            v-for="workshop in workshops" 
-            :key="workshop.id"
+          <a 
+            v-for="guide in latestGuides" 
+            :key="guide.id"
+            :href="guide.url"
+            target="_blank"
             class="group p-8 bg-surface-container-low rounded-2xl hover:shadow-xl transition-all"
           >
             <div class="text-4xl mb-4">
-              {{ workshop.type === 'personal-data' ? '📱' : workshop.type === 'algorithm' ? '⚖️' : '🤖' }}
+              {{ guide.type === 'guide' ? '📚' : '📱' }}
             </div>
             <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-              {{ workshop.shortTitle || workshop.title }}
+              {{ guide.title }}
             </h3>
             <p class="text-on-surface-variant text-sm mb-4">
-              {{ workshop.goal }}
+              {{ guide.description }}
             </p>
             <span class="text-xs font-bold text-primary">
-              {{ workshop.participants }}人参与
+              {{ guide.participants }}人参与
             </span>
-          </div>
+          </a>
         </div>
 
         <div class="text-center">
-          <router-link to="/learn" class="inline-flex items-center gap-2 px-8 py-4 bg-primary text-on-primary rounded-xl font-bold hover:shadow-lg hover:-translate-y-1 transition-all">
-            探索数字素养 <ArrowRight :size="18" />
+          <router-link to="/guide" class="inline-flex items-center gap-2 px-8 py-4 bg-primary text-on-primary rounded-xl font-bold hover:shadow-lg hover:-translate-y-1 transition-all">
+            探索指北 <ArrowRight :size="18" />
           </router-link>
         </div>
       </div>
@@ -174,33 +180,33 @@ const upcomingEvents = events.slice(0, 2);
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <router-link to="/events" class="group p-8 bg-white rounded-2xl hover:shadow-xl transition-all text-center">
+          <router-link to="/roundtable" class="group p-8 bg-white rounded-2xl hover:shadow-xl transition-all text-center">
             <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <Calendar class="text-primary" :size="32" />
+              <MessageSquare class="text-primary" :size="32" />
             </div>
-            <h3 class="text-xl font-bold mb-2">参加活动</h3>
-            <p class="text-on-surface-variant text-sm mb-4">工作坊、圆桌派线下活动</p>
+            <h3 class="text-xl font-bold mb-2">圆桌派</h3>
+            <p class="text-on-surface-variant text-sm mb-4">专家分享与讨论</p>
             <span class="text-primary font-bold text-sm group-hover:gap-2 transition-all inline-flex items-center gap-1">
-              查看活动 <ArrowRight :size="14" />
+              查看全部 <ArrowRight :size="14" />
             </span>
           </router-link>
 
-          <button class="group p-8 bg-white rounded-2xl hover:shadow-xl transition-all text-center">
+          <router-link to="/play" class="group p-8 bg-white rounded-2xl hover:shadow-xl transition-all text-center">
             <div class="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <Users class="text-secondary" :size="32" />
+              <Gamepad2 class="text-secondary" :size="32" />
             </div>
-            <h3 class="text-xl font-bold mb-2">成为志愿者</h3>
-            <p class="text-on-surface-variant text-sm mb-4">用你的专业帮助社区</p>
+            <h3 class="text-xl font-bold mb-2">Play</h3>
+            <p class="text-on-surface-variant text-sm mb-4">互动体验与工具</p>
             <span class="text-secondary font-bold text-sm group-hover:gap-2 transition-all inline-flex items-center gap-1">
-              加入我们 <ArrowRight :size="14" />
+              探索体验 <ArrowRight :size="14" />
             </span>
-          </button>
+          </router-link>
 
-          <router-link to="/campaign" class="group p-8 bg-white rounded-2xl hover:shadow-xl transition-all text-center">
+          <router-link to="/cocreation" class="group p-8 bg-white rounded-2xl hover:shadow-xl transition-all text-center">
             <div class="w-16 h-16 bg-tertiary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <Target class="text-tertiary" :size="32" />
             </div>
-            <h3 class="text-xl font-bold mb-2">参与项目</h3>
+            <h3 class="text-xl font-bold mb-2">共创营</h3>
             <p class="text-on-surface-variant text-sm mb-4">加入行动项目共创</p>
             <span class="text-tertiary font-bold text-sm group-hover:gap-2 transition-all inline-flex items-center gap-1">
               了解更多 <ArrowRight :size="14" />
