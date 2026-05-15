@@ -91,8 +91,6 @@ npm run lint       # TypeScript 类型检查
 | 指北 | `guide/` | 工作坊与工具 |
 | 观点 | `opinions/` | 文章与资讯 |
 
-详细的内容格式说明请参考 [CONTENT_GUIDE.md](./CONTENT_GUIDE.md)。
-
 ## 设计规范
 
 项目使用完整的设计系统，详见 [DESIGN.md](./DESIGN.md)。
