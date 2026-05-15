@@ -1,45 +1,43 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { getCocreationById, parseContentLinks } from '@/content';
+import { getCocreationById, getProjectById, parseContentLinks } from '@/content';
 import { Target, FileText, Users, Calendar, Trophy, Link2, ChevronRight, ExternalLink, BookOpen, ArrowRight } from 'lucide-vue-next';
 import { computed, ref } from 'vue';
 import VueMarkdown from 'vue-markdown-render';
 
 const route = useRoute();
 const item = computed(() => getCocreationById(route.params.id as string));
+const relatedProject = computed(() => item.value?.projectId ? getProjectById(item.value.projectId) : null);
 
 const activeTab = ref('overview');
 
 const tabs = [
   { id: 'overview', label: '活动概览', icon: Target },
-  { id: 'review', label: '回顾文章', icon: FileText },
+  { id: 'review', label: '共创回顾', icon: FileText },
+  { id: 'outputs', label: '共创产出', icon: Trophy },
 ];
 
 const getSectionContent = (sectionId: string) => {
   if (!item.value?.content) return '';
   
   const content = item.value.content;
-  const sections: Record<string, { start: string; end: string }> = {
-    overview: { start: '## 活动简介', end: '## 回顾文章' },
-    review: { start: '## 回顾文章', end: '' },
+  const dividerIndex = content.indexOf('\n---\n');
+  
+  const sections: Record<string, { start: number; end: number }> = {
+    overview: { start: 0, end: dividerIndex > 0 ? dividerIndex : content.length },
+    review: { start: dividerIndex > 0 ? dividerIndex + 5 : 0, end: content.length },
   };
   
   const section = sections[sectionId];
   if (!section) return '';
   
-  const startIndex = content.indexOf(section.start);
-  if (startIndex === -1) return '';
-  
-  let endIndex = -1;
-  if (section.end) {
-    endIndex = content.indexOf(section.end, startIndex);
-  }
-  
-  if (endIndex === -1) {
-    return content.substring(startIndex);
-  }
-  
-  return content.substring(startIndex, endIndex);
+  return content.substring(section.start, section.end);
+};
+
+const getSeasonLabel = (season: number | undefined) => {
+  if (!season) return '';
+  const labels = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
+  return `第${labels[season - 1]}期`;
 };
 </script>
 
@@ -61,6 +59,9 @@ const getSectionContent = (sectionId: string) => {
           >
             {{ item.status === 'active' ? '进行中' : '已完成' }}
           </span>
+          <span v-if="item.season" class="px-3 py-1 text-xs font-bold bg-secondary/20 text-secondary rounded-full">
+            {{ getSeasonLabel(item.season) }}
+          </span>
           <span v-if="item.year" class="text-sm opacity-80">{{ item.year }}</span>
         </div>
 
@@ -68,10 +69,20 @@ const getSectionContent = (sectionId: string) => {
           {{ item.title }}
         </h1>
 
+        <div v-if="item.subtitle" class="text-xl text-on-surface-variant mb-6">
+          {{ item.subtitle }}
+        </div>
+
         <div class="flex items-center gap-8 mb-8 text-sm">
           <div v-if="item.participants && item.participants > 0" class="flex items-center gap-2">
             <Users :size="18" />
             <span class="font-semibold">{{ item.participants }} 位普通人参与</span>
+          </div>
+          <div v-if="item.projectId && relatedProject" class="flex items-center gap-2">
+            <FileText :size="18" />
+            <router-link :to="`/projects/${relatedProject.id}`" class="font-semibold text-secondary hover:underline">
+              关联项目：{{ relatedProject.title }}
+            </router-link>
           </div>
         </div>
 
@@ -112,25 +123,41 @@ const getSectionContent = (sectionId: string) => {
       </div>
     </section>
 
-    <section v-if="item?.content" class="py-16 px-6 bg-surface">
+    <section v-if="item?.content && activeTab === 'overview'" class="py-16 px-6 bg-surface">
       <div class="max-w-4xl mx-auto">
         <article class="bg-white rounded-2xl shadow-lg p-8 md:p-12">
           <div class="prose-custom">
-            <VueMarkdown :source="parseContentLinks(getSectionContent(activeTab))" />
+            <VueMarkdown :source="getSectionContent('overview')" />
           </div>
         </article>
       </div>
     </section>
 
-    <section v-if="item?.outputs?.length" class="py-16 px-6">
+    <section v-if="item?.content && activeTab === 'review'" class="py-16 px-6 bg-surface">
       <div class="max-w-4xl mx-auto">
-        <h2 class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-3">
-          <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
-            <Trophy :size="24" class="text-primary" />
+        <article class="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-8">
+          <div class="prose-custom">
+            <VueMarkdown :source="getSectionContent('review')" />
           </div>
-          共创成果
-        </h2>
-        <div class="grid gap-4">
+        </article>
+      </div>
+    </section>
+
+    <section v-if="activeTab === 'outputs'" class="py-16 px-6 bg-surface">
+      <div class="max-w-4xl mx-auto">
+        <div v-if="item?.outputs?.length" class="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
+            <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
+              <Trophy :size="24" class="text-primary" />
+            </div>
+            共创产出
+          </h2>
+          <div class="prose-custom">
+            <VueMarkdown :source="getSectionContent('outputs')" />
+          </div>
+        </div>
+
+        <div v-if="item?.outputs?.length" class="grid gap-4">
           <a
             v-for="output in item.outputs"
             :key="output.name"
@@ -154,10 +181,33 @@ const getSectionContent = (sectionId: string) => {
             </div>
           </a>
         </div>
+
+        <div v-if="!item?.outputs?.length" class="bg-white rounded-2xl shadow-lg p-12 text-center">
+          <p class="text-on-surface-variant">暂无共创产出</p>
+        </div>
+
+        <div v-if="relatedProject" class="mt-12 bg-gradient-to-r from-secondary/10 to-transparent rounded-2xl p-8">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center">
+              <Link2 :size="24" class="text-secondary" />
+            </div>
+            <div>
+              <h3 class="font-bold text-lg">关联项目</h3>
+              <p class="text-sm text-on-surface-variant">{{ relatedProject.title }}</p>
+            </div>
+          </div>
+          <router-link
+            :to="`/projects/${relatedProject.id}`"
+            class="inline-flex items-center gap-2 px-5 py-2.5 bg-secondary text-white font-bold rounded-xl hover:bg-secondary/90 transition-colors"
+          >
+            查看项目详情
+            <ArrowRight :size="18" />
+          </router-link>
+        </div>
       </div>
     </section>
 
-    <section v-if="item?.articles?.length" class="py-16 px-6 bg-surface-container-low">
+    <section v-if="item?.articles?.length && activeTab === 'overview'" class="py-16 px-6 bg-surface-container-low">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-3">
           <div class="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center">
@@ -187,7 +237,7 @@ const getSectionContent = (sectionId: string) => {
       </div>
     </section>
 
-    <section v-if="item?.wikiUrl" class="py-16 px-6">
+    <section v-if="item?.wikiUrl && activeTab === 'overview'" class="py-16 px-6">
       <div class="max-w-4xl mx-auto">
         <a
           :href="item.wikiUrl"
@@ -212,7 +262,7 @@ const getSectionContent = (sectionId: string) => {
       </div>
     </section>
 
-    <section v-else class="py-20 px-6 text-center">
+    <section v-if="!item" class="py-20 px-6 text-center">
       <p class="text-on-surface-variant">未找到该共创项目</p>
     </section>
   </div>
