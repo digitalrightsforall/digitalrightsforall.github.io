@@ -3,8 +3,6 @@ id: collective-governance
 title: 集体数据治理
 description: 探索集体参与数据治理和权益维护的路径
 order: 2
-homeFeatured: true
-homeOrder: 2
 projects:
   - xiaoqu-data
 ---

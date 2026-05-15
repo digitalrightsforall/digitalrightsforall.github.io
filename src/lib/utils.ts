@@ -14,11 +14,10 @@ export function isValidImage(imageUrl?: string): boolean {
     'null',
     'undefined',
     'none',
-    '',
     'http://placeholder',
     'https://placeholder',
     '/placeholder',
     './placeholder',
   ];
-  return !placeholderPatterns.some(pattern => trimmedUrl.includes(pattern));
+  return !placeholderPatterns.some(pattern => pattern && trimmedUrl.includes(pattern));
 }

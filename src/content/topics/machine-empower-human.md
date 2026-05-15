@@ -3,8 +3,6 @@ id: machine-empower-human
 title: 机器赋能人类
 description: 探索如何让AI和机器工具成为人类的助手和伙伴，而非替代者
 order: 3
-homeFeatured: true
-homeOrder: 3
 projects:
   - skill4human
 ---

@@ -7,7 +7,7 @@ status: active
 goal: 探索小区作为集体环境下的数据治理权问题，从物理溯源、知情权利、共享利用到治理重构，层层剖析小区数据治理的解决方案。
 image: /images/xiaoqu-data.png
 homeFeatured: true
-homeOrder: 12
+homeOrder: 3
 articles:
   - title: "小区数据的治理权究竟在谁手上？议题导引篇"
     shortTitle: "议题导引篇"

@@ -3,8 +3,6 @@ id: personal-data
 title: 个人数据权益
 description: 探索以普通人为中心的个人数据治理和权益保护
 order: 1
-homeFeatured: true
-homeOrder: 1
 projects:
   - data-trustee
 ---

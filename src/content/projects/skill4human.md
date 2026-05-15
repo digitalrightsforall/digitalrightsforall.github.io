@@ -8,7 +8,7 @@ goal: 回归「机器赋能人类」的理念，让SKILL不仅仅是黑箱工具
 participants: 0
 image: /images/skill4human.png
 homeFeatured: true
-homeOrder: 3
+homeOrder: 2
 outputs:
   - name: Skill4Human 原型网站
     url: https://skill4human.putongren.org
