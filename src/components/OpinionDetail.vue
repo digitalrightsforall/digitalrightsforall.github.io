@@ -4,6 +4,7 @@ import { computed } from 'vue';
 import { FileText, Clock, ChevronLeft, ChevronRight, Target, BookOpen } from 'lucide-vue-next';
 import { getOpinionById, getTopicById, getProjectById, parseContentLinks, opinions } from '@/content';
 import VueMarkdown from 'vue-markdown-render';
+import { isValidImage } from '@/lib/utils';
 
 const route = useRoute();
 const opinion = computed(() => getOpinionById(route.params.id as string));
@@ -81,7 +82,7 @@ const prevNextOpinion = computed(() => {
           </div>
         </div>
 
-        <div v-if="opinion.image" class="aspect-video rounded-2xl overflow-hidden mb-12 shadow-xl">
+        <div v-if="isValidImage(opinion.image)" class="aspect-video rounded-2xl overflow-hidden mb-12 shadow-xl">
           <img 
             :src="opinion.image" 
             :alt="opinion.title"

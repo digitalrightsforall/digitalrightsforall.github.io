@@ -2,6 +2,7 @@
 import { ArrowRight, FileText, GraduationCap, Gamepad2, MessageSquare } from 'lucide-vue-next';
 import { guides, opinions } from '@/content';
 import HomeCarousel from './HomeCarousel.vue';
+import { isValidImage } from '@/lib/utils';
 
 interface HomeItem {
   type: 'cocreation' | 'guide' | 'opinion' | 'roundtable' | 'play';
@@ -17,9 +18,9 @@ interface HomeItem {
   order: number;
 }
 
-function getFeaturedItems<T extends { homeFeatured?: boolean; homeOrder?: number }>(items: T[], type: HomeItem['type'], getUrl: (item: T) => string): HomeItem[] {
+function getFeaturedItems<T extends { homeFeatured?: boolean; homeOrder?: number; image?: string }>(items: T[], type: HomeItem['type'], getUrl: (item: T) => string): HomeItem[] {
   return items
-    .filter(item => item.homeFeatured)
+    .filter(item => item.homeFeatured && isValidImage(item.image))
     .map(item => ({
       type,
       id: item.id,
@@ -27,7 +28,7 @@ function getFeaturedItems<T extends { homeFeatured?: boolean; homeOrder?: number
       description: item.description || item.goal,
       excerpt: (item as any).excerpt,
       goal: item.goal,
-      image: item.image,
+      image: item.image || '',
       url: getUrl(item),
       participants: item.participants,
       date: (item as any).date,

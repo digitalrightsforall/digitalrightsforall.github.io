@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { seasons } from '@/content';
-import { cn } from '@/lib/utils';
+import { cn, isValidImage } from '@/lib/utils';
 import { ArrowRight, CheckCircle2 } from 'lucide-vue-next';
 </script>
 
@@ -23,7 +23,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-vue-next';
         class="group"
       >
         <div class="bg-surface-container-lowest rounded-[2.5rem] overflow-hidden border border-outline-variant/10 hover:shadow-2xl transition-all duration-500">
-          <div class="h-64 overflow-hidden relative">
+        <div v-if="isValidImage(season.image)" class="h-64 overflow-hidden relative">
             <img 
               :src="season.image" 
               :alt="season.title"

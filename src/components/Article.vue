@@ -4,6 +4,7 @@ import VueMarkdown from 'vue-markdown-render';
 import { articles, publications, getArticleById, getPublicationById } from '@/content';
 import { ArrowLeft, Share2, Bookmark, MessageSquare, Lightbulb, ChevronRight, FileText } from 'lucide-vue-next';
 import { computed } from 'vue';
+import { isValidImage } from '@/lib/utils';
 
 const route = useRoute();
 
@@ -66,7 +67,7 @@ const categoryLabel = computed(() => {
             </div>
             <h5 class="font-bold mb-2">{{ articleData.tips.title }}</h5>
             <p class="text-xs text-on-surface-variant leading-relaxed mb-4">{{ articleData.tips.content }}</p>
-            <img :src="articleData.tips.image" alt="Tip" class="w-full rounded-lg" referrerPolicy="no-referrer" />
+            <img v-if="isValidImage(articleData.tips.image)" :src="articleData.tips.image" alt="Tip" class="w-full rounded-lg" referrerPolicy="no-referrer" />
           </div>
         </div>
       </aside>

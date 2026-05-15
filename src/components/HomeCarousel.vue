@@ -2,7 +2,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-vue-next';
 import { topics, projects } from '@/content';
-import { cn } from '@/lib/utils';
+import { cn, isValidImage } from '@/lib/utils';
 
 export interface CarouselItem {
   id: string;
@@ -26,7 +26,7 @@ let autoPlayInterval: ReturnType<typeof setInterval> | null = null;
 const getAllCarouselItems = computed<CarouselItem[]>(() => {
   const items: CarouselItem[] = [];
 
-  topics.filter(t => t.homeFeatured && t.image).forEach(topic => {
+  topics.filter(t => t.homeFeatured && isValidImage(t.image)).forEach(topic => {
     items.push({
       id: topic.id,
       type: 'topic',
@@ -38,7 +38,7 @@ const getAllCarouselItems = computed<CarouselItem[]>(() => {
     });
   });
 
-  projects.filter(p => p.homeFeatured && p.image).forEach(project => {
+  projects.filter(p => p.homeFeatured && isValidImage(p.image)).forEach(project => {
     items.push({
       id: project.id,
       type: 'project',

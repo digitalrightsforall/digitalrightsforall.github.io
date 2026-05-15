@@ -3,6 +3,7 @@ import { useRoute } from 'vue-router';
 import VueMarkdown from 'vue-markdown-render';
 import { workshops, getWorkshopById } from '@/content';
 import { ArrowLeft, Users, FileText, ExternalLink, Video, ClipboardList } from 'lucide-vue-next';
+import { isValidImage } from '@/lib/utils';
 
 const route = useRoute();
 const workshop = getWorkshopById(route.params.id as string) || workshops[0];
@@ -88,7 +89,7 @@ const hasVideo = workshop.videoUrl && workshop.videoUrl.length > 0;
           </div>
         </div>
         
-        <div class="lg:col-span-5">
+        <div v-if="isValidImage(workshop.image)" class="lg:col-span-5">
           <div class="aspect-video rounded-[2rem] overflow-hidden shadow-xl">
             <img 
               :src="workshop.image" 

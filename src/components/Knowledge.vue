@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { articles } from '../content';
 import { ArrowRight, BookOpen, Clock, Tag } from 'lucide-vue-next';
+import { isValidImage } from '@/lib/utils';
 </script>
 
 <template>
@@ -21,7 +22,7 @@ import { ArrowRight, BookOpen, Clock, Tag } from 'lucide-vue-next';
         :key="article.id"
       >
         <router-link :to="`/article/${article.id}`" class="group block h-full bg-white rounded-2xl overflow-hidden border border-outline-variant/10 hover:shadow-xl transition-all">
-          <div class="h-52 overflow-hidden">
+        <div v-if="isValidImage(article.image)" class="h-52 overflow-hidden">
             <img 
               :src="article.image" 
               :alt="article.title"

@@ -4,6 +4,7 @@ import { computed } from 'vue';
 import { ArrowRight, Users, Calendar, FileText, Target, ExternalLink, BookOpen } from 'lucide-vue-next';
 import { getProjectById, getTopicById, parseContentLinks, roundtables, guides, opinions, cocreations } from '@/content';
 import VueMarkdown from 'vue-markdown-render';
+import { isValidImage } from '@/lib/utils';
 
 const route = useRoute();
 
@@ -75,7 +76,7 @@ const colorClasses = {
           {{ project.goal }}
         </p>
 
-        <div v-if="project.image" class="aspect-video rounded-2xl overflow-hidden shadow-2xl mb-10">
+        <div v-if="isValidImage(project.image)" class="aspect-video rounded-2xl overflow-hidden shadow-2xl mb-10">
           <img
             :src="project.image"
             :alt="project.title"

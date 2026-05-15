@@ -4,6 +4,7 @@ import { getRoundtableById, parseContentLinks } from '@/content';
 import { computed } from 'vue';
 import VueMarkdown from 'vue-markdown-render';
 import { ArrowLeft, Calendar, MapPin, Clock } from 'lucide-vue-next';
+import { isValidImage } from '@/lib/utils';
 
 const route = useRoute();
 const item = computed(() => getRoundtableById(route.params.id as string));
@@ -38,7 +39,7 @@ const item = computed(() => getRoundtableById(route.params.id as string));
           </div>
         </div>
 
-        <div v-if="item.image" class="aspect-video rounded-2xl overflow-hidden mb-12 shadow-xl">
+        <div v-if="isValidImage(item.image)" class="aspect-video rounded-2xl overflow-hidden mb-12 shadow-xl">
           <img 
             :src="item.image" 
             :alt="item.title"

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { campaigns } from '@/content';
 import { ArrowRight, CheckCircle2, Users, Target } from 'lucide-vue-next';
+import { isValidImage } from '@/lib/utils';
 
 const activeCampaign = campaigns.find(c => c.status === 'active');
 const pastCampaigns = campaigns.filter(c => c.status === 'completed');
@@ -50,7 +51,7 @@ const pastCampaigns = campaigns.filter(c => c.status === 'completed');
                 查看详情 <ArrowRight :size="18" />
               </router-link>
             </div>
-            <div class="md:w-1/3">
+            <div v-if="isValidImage(activeCampaign.image)" class="md:w-1/3">
               <div class="aspect-video rounded-2xl overflow-hidden">
                 <img 
                   :src="activeCampaign.image" 
@@ -78,7 +79,7 @@ const pastCampaigns = campaigns.filter(c => c.status === 'completed');
           class="group bg-surface-container-lowest rounded-[2.5rem] overflow-hidden border border-outline-variant/10 hover:shadow-2xl transition-all duration-500 cursor-pointer"
           @click="$router.push(`/campaign/${campaign.id}`)"
         >
-          <div class="h-48 overflow-hidden relative">
+          <div v-if="isValidImage(campaign.image)" class="h-48 overflow-hidden relative">
             <img 
               :src="campaign.image" 
               :alt="campaign.title"
@@ -86,7 +87,7 @@ const pastCampaigns = campaigns.filter(c => c.status === 'completed');
               referrerPolicy="no-referrer"
             />
             <div class="absolute top-6 left-6 px-4 py-2 rounded-full bg-white/90 backdrop-blur-md text-sm font-bold text-on-surface">
-              {{ campaign.year }}年
+              已完成
             </div>
           </div>
           <div class="p-10">

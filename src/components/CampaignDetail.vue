@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router';
 import VueMarkdown from 'vue-markdown-render';
 import { campaigns, getCampaignById } from '@/content';
 import { ArrowLeft, Users, CheckCircle2, Download, ArrowRight, FileText, Calendar, MessageSquare, Sparkles } from 'lucide-vue-next';
+import { isValidImage } from '@/lib/utils';
 
 const route = useRoute();
 const campaign = getCampaignById(route.params.id as string) || campaigns[0];
@@ -68,7 +69,7 @@ const getOutputIcon = (type: string) => {
           </div>
         </div>
         
-        <div class="lg:col-span-5">
+        <div v-if="isValidImage(campaign.image)" class="lg:col-span-5">
           <div class="aspect-video rounded-[2rem] overflow-hidden shadow-xl">
             <img 
               :src="campaign.image" 

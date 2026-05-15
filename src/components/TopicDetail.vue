@@ -4,6 +4,7 @@ import { computed } from 'vue';
 import { ArrowRight, Users, Calendar, FileText, Target } from 'lucide-vue-next';
 import { getTopicById, getProjectsByIds, getProjectsByTopic, parseContentLinks, roundtables, guides, opinions, cocreations } from '@/content';
 import VueMarkdown from 'vue-markdown-render';
+import { isValidImage } from '@/lib/utils';
 
 const route = useRoute();
 
@@ -77,9 +78,9 @@ const topicCocreations = computed(() => {
             :to="`/project/${project.id}`"
             class="group p-8 bg-white rounded-2xl hover:shadow-xl transition-all"
           >
-            <div class="aspect-video rounded-xl overflow-hidden mb-4">
+            <div v-if="isValidImage(project.image)" class="aspect-video rounded-xl overflow-hidden mb-4">
               <img
-                :src="project.image || '/images/placeholder.png'"
+                :src="project.image"
                 :alt="project.title"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 referrerPolicy="no-referrer"

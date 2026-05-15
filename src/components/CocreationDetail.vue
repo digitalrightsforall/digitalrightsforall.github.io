@@ -90,7 +90,7 @@ const getSeasonLabel = (season: number | undefined) => {
           {{ item.goal }}
         </p>
 
-        <div v-if="item.image" class="aspect-video rounded-2xl overflow-hidden shadow-2xl mb-10">
+        <div v-if="isValidImage(item.image)" class="aspect-video rounded-2xl overflow-hidden shadow-2xl mb-10">
           <img
             :src="item.image"
             :alt="item.title"
