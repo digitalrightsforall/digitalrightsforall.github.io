@@ -26,9 +26,12 @@ const prevNextOpinion = computed(() => {
   if (!opinion.value) return { prev: null, next: null };
   
   const sortedOpinions = [...opinions].sort((a, b) => {
-    const orderA = a.homeOrder || a.id.localeCompare(b.id);
-    const orderB = b.homeOrder || b.id.localeCompare(a.id);
-    return orderA - orderB;
+    if (a.homeOrder !== undefined && b.homeOrder !== undefined) {
+      return a.homeOrder - b.homeOrder;
+    }
+    const idA = String(a.id);
+    const idB = String(b.id);
+    return idA.localeCompare(idB);
   });
   
   const currentIndex = sortedOpinions.findIndex(o => o.id === opinion.value!.id);

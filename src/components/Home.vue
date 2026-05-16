@@ -79,11 +79,8 @@ const latestGuides = featuredGuides.length >= 3
           帮助每一个普通人在机器时代保护自己。
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-          <router-link to="/cocreation" class="w-full sm:w-auto px-10 py-5 bg-primary text-on-primary rounded-2xl font-black text-lg hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2 group">
+          <router-link to="/topics" class="w-full sm:w-auto px-10 py-5 bg-primary text-on-primary rounded-2xl font-black text-lg hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2 group">
             了解我们在做什么 <ArrowRight :size="20" class="group-hover:translate-x-1 transition-transform" />
-          </router-link>
-          <router-link to="/guide" class="w-full sm:w-auto px-10 py-5 bg-white border-2 border-outline-variant/30 text-on-surface rounded-2xl font-black text-lg hover:bg-surface-container transition-all">
-            了解更多
           </router-link>
         </div>
       </div>

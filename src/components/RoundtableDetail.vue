@@ -14,13 +14,15 @@ const item = computed(() => getRoundtableById(route.params.id as string));
   <div class="pt-20">
     <section v-if="item" class="py-16 px-6 bg-gradient-to-b from-primary/10 to-transparent">
       <div class="max-w-4xl mx-auto">
-        <router-link to="/roundtable" class="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary font-bold transition-colors mb-8">
-          <ArrowLeft :size="18" /> 返回圆桌派
-        </router-link>
-        
-        <span class="inline-block px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest mb-4 bg-secondary/10 text-secondary">
-          {{ item.category }}
-        </span>
+        <div class="flex items-center justify-between mb-6">
+          <router-link to="/roundtable" class="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary font-bold transition-colors">
+            <ArrowLeft :size="18" /> 返回圆桌派
+          </router-link>
+          
+          <span class="inline-block px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest bg-secondary/10 text-secondary">
+            {{ item.category }}
+          </span>
+        </div>
         
         <h1 class="text-4xl md:text-5xl font-black mb-6">{{ item.title }}</h1>
         

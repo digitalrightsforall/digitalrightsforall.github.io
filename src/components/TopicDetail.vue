@@ -40,7 +40,7 @@ const topicCocreations = computed(() => {
 
 <template>
   <div class="pt-20">
-    <section v-if="topic" class="py-16 px-6 bg-gradient-to-b from-primary/10 to-transparent">
+    <section v-if="topic" class="pt-16 pb-8 px-6 bg-gradient-to-b from-primary/10 to-transparent">
       <div class="max-w-4xl mx-auto">
         <div class="flex items-center gap-2 text-sm font-black uppercase tracking-widest mb-6 opacity-60">
           <Target :size="16" />

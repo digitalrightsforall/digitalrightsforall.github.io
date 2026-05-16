@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
 const footerLinks = [
   { title: '导航', links: [
+    { name: '议题', path: '/topics' },
     { name: '圆桌派', path: '/roundtable' },
     { name: '共创营', path: '/cocreation' },
     { name: '指北', path: '/guide' },
@@ -11,10 +14,13 @@ const footerLinks = [
 
 const socialLinks = [
   { name: 'Github', href: 'https://github.com/digitalrightsforall?view_as=public', iconClass: 'ri-github-fill' },
+  { name: 'Bilibili', href: 'https://space.bilibili.com/3706968606771398', iconClass: 'ri-bilibili-fill' },
   { name: '微博', href: '#', iconClass: 'ri-weibo-fill' },
   { name: '抖音', href: '#', iconClass: 'ri-tiktok-fill' },
   { name: '邮箱', href: 'mailto:digitalrights@opendatachina.org', iconClass: 'ri-mail-line' },
 ];
+
+const showQR = ref(false);
 </script>
 
 <template>
@@ -40,6 +46,29 @@ const socialLinks = [
             >
               <i :class="social.iconClass" class="text-lg"></i>
             </a>
+            <div class="relative inline-block">
+              <button 
+                @click="showQR = !showQR"
+                @mouseenter="showQR = true"
+                @mouseleave="showQR = false"
+                class="p-3 rounded-xl bg-surface-container hover:bg-primary hover:text-white transition-all cursor-pointer"
+                title="微信公众号"
+              >
+                <i class="ri-wechat-fill text-lg"></i>
+              </button>
+              <transition name="fade">
+                <div 
+                  v-if="showQR"
+                  class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 p-2 bg-white rounded-lg shadow-xl z-[9999]"
+                >
+                  <img 
+                    src="/images/qrcode.png" 
+                    alt="微信公众号" 
+                    class="max-w-[160px] max-h-[160px] object-contain"
+                  />
+                </div>
+              </transition>
+            </div>
           </div>
         </div>
 
@@ -69,3 +98,16 @@ const socialLinks = [
     </div>
   </footer>
 </template>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateX(-50%) translateY(10px);
+}
+</style>

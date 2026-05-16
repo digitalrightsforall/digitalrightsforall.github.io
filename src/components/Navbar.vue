@@ -52,9 +52,6 @@ const navLinks = [
           {{ link.name }}
           <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
         </router-link>
-        <button class="px-6 py-2.5 bg-primary text-on-primary rounded-full text-sm font-bold hover:shadow-lg hover:-translate-y-0.5 transition-all">
-          成为社区一员
-        </button>
       </div>
 
       <!-- Mobile Toggle -->
@@ -84,9 +81,6 @@ const navLinks = [
             <component :is="link.icon" :size="20" />
             {{ link.name }}
           </router-link>
-          <button class="w-full mt-4 py-4 bg-primary text-on-primary rounded-xl font-bold">
-            加入社区
-          </button>
         </div>
       </div>
     </transition>

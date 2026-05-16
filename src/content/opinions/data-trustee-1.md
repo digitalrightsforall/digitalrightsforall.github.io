@@ -6,8 +6,6 @@ category: 数据受托者
 readTime: 12 分钟
 author: 数字权利圆桌派
 date: 2024年09月24日
-image: https://opendatachina.feishu.cn/docx/TP3HdXIb8owmPZx1o64cFQ7PnTe
-featured: true
 tips:
   title: 关键概念
   content: 个人数据不只是「来自我的数据」，还包括「关于我的数据」和「影响我的数据」，理解这一点对思考受托者制度至关重要。

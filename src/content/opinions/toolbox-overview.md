@@ -6,7 +6,6 @@ category: 工具资源
 readTime: 5 分钟
 author: 数字权利圆桌派
 date: 2024年06月01日
-image: https://opendatachina.feishu.cn/wiki/NgdawiGobi6J7Gk0h4bcmiLynbe
 tips:
   title: 指北工具箱
   content: 工具箱包含知识类和行动类工具，帮助普通人理解数字权利、守护个人数据。

@@ -9,7 +9,7 @@ readTime: 25 分钟
 topicId: collective-governance
 projectId: xiaoqu-data
 homeFeatured: true
-homeOrder: 8
+homeOrder: 1
 category: 研究报告
 ---
 

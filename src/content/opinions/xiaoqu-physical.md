@@ -8,8 +8,6 @@ date: 2026-05-14
 readTime: 20 分钟
 topicId: collective-governance
 projectId: xiaoqu-data
-homeFeatured: true
-homeOrder: 5
 category: 研究报告
 ---
 
