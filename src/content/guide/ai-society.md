@@ -6,6 +6,7 @@ type: ai-society
 goal: 探讨 AI 时代我们如何与自动化系统共存，理解大模型和生成式AI对普通人的影响，思考在自动化决策日益普及的社会中如何保护自己的权利。
 description: 探讨大模型和自动化决策对普通人的影响，以及如何在这个时代保护自己。
 participants: 809
+feishuUrl: https://opendatachina.feishu.cn/docx/GdrbdGDI8oRLGDxVlJPcrwYInZd
 videoUrl: 
 materials:
   - name: 工作坊教案

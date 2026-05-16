@@ -89,13 +89,20 @@ export interface Guide {
   description: string;
   goal: string;
   participants: number;
-  image: string;
+  image?: string;
   color: 'primary' | 'secondary' | 'tertiary';
   topicId?: string;
   projectId?: string;
   homeFeatured?: boolean;
   homeOrder?: number;
-  feishuUrl: string;
+  feishuUrl?: string;
+  videoUrl?: string;
+  materials?: Array<{
+    name: string;
+    url: string;
+    type: string;
+  }>;
+  content?: string;
 }
 
 export interface Opinion {
@@ -181,8 +188,11 @@ function parseCocreation(): Cocreation[] {
 
 function parseGuide(): Guide[] {
   return Object.values(guideModules).map((raw) => {
-    const { data } = matter(raw as string);
-    return data as Guide;
+    const { data, content } = matter(raw as string);
+    return {
+      ...(data as Partial<Guide>),
+      content: content.trim(),
+    } as Guide;
   }).sort((a, b) => a.id.localeCompare(b.id));
 }
 
