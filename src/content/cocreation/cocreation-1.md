@@ -8,7 +8,7 @@ status: completed
 goal: 通过设计让普通民众掌握基础知识、工具和问题，以应对数字化可能带来的不平等、不公正和不人性化。
 type: campaign
 outputs: []
-image: /images/cocreation-1.png
+image: /images/cocreation/cocreation-1.png
 color: primary
 ---
 

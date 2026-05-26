@@ -8,7 +8,7 @@ goal: 集结普通消费者，通过共创描绘心目中能让自身放心托�
 type: campaign
 outputs: []
 projectId: data-trustee
-image: /images/cocreation-4.png
+image: /images/cocreation/cocreation-4.png
 color: quaternary
 ---
 

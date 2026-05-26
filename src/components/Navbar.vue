@@ -36,7 +36,7 @@ const navLinks = [
   >
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <router-link to="/" class="flex items-center gap-2 group">
-        <img src="/images/logo.svg" alt="普通人的数字权利" class="w-10 h-10 object-contain group-hover:rotate-12 transition-transform" />
+        <img src="/images/brand/logo.svg" alt="普通人的数字权利" class="w-10 h-10 object-contain group-hover:rotate-12 transition-transform" />
         <span class="text-xl font-black tracking-tighter text-on-surface">普通人的数字权利</span>
       </router-link>
 

@@ -29,7 +29,7 @@ const showQR = ref(false);
       <div class="flex flex-col lg:flex-row gap-12 mb-20">
         <div class="flex-1">
           <router-link to="/" class="flex items-center gap-2 mb-6">
-            <img src="/images/logo.svg" alt="普通人的数字权利" class="w-10 h-10 object-contain" />
+            <img src="/images/brand/logo.svg" alt="普通人的数字权利" class="w-10 h-10 object-contain" />
             <span class="text-xl font-black tracking-tighter text-on-surface">普通人的数字权利</span>
           </router-link>
           <p class="text-on-surface-variant max-w-sm leading-relaxed mb-8">
@@ -62,7 +62,7 @@ const showQR = ref(false);
                   class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 p-2 bg-white rounded-lg shadow-xl z-[9999]"
                 >
                   <img 
-                    src="/images/qrcode.png" 
+                    src="/images/qrcode/qrcode.png" 
                     alt="微信公众号" 
                     class="max-w-[160px] max-h-[160px] object-contain"
                   />
