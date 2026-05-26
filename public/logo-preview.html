@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Preview - 新logo预览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 32px;
+            color: #1B3A4B;
+        }
+        
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .preview-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .preview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .preview-card h3 {
+            color: #1B3A4B;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 150px;
+            margin-bottom: 15px;
+        }
+        
+        .logo-container img,
+        .logo-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .size-label {
+            font-size: 14px;
+            color: #666;
+            background: #f5f5f5;
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        .background-options {
+            margin-top: 40px;
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .background-options h3 {
+            margin-bottom: 20px;
+            color: #1B3A4B;
+            font-size: 20px;
+        }
+        
+        .background-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        .bg-option {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.2s ease;
+        }
+        
+        .bg-option:hover {
+            transform: scale(1.05);
+        }
+        
+        .bg-option svg {
+            max-width: 80%;
+            height: auto;
+        }
+        
+        .info-section {
+            margin-top: 40px;
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .info-section h3 {
+            margin-bottom: 15px;
+            color: #1B3A4B;
+            font-size: 20px;
+        }
+        
+        .info-section p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        
+        .color-palette {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .color-swatch {
+            text-align: center;
+        }
+        
+        .color-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .color-name {
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ Logo Preview 新logo预览</h1>
+        
+        <div class="preview-grid">
+            <div class="preview-card">
+                <h3>🖼️ 64x64 像素</h3>
+                <div class="logo-container" style="background: #f8f9fa;">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+                        <path fill="#1B3A4B" transform="matrix(1 0 0 1 3.2 3.2)" d="M57.6 57.6L57.6 0L0 0L0 57.6L57.6 57.6ZM4 53.6L4 4L53.6 4L53.6 53.6L4 53.6Z" fill-rule="evenodd"/>
+                        <circle fill="#1B3A4B" transform="matrix(1 0 0 1 24.8 15.2)" cx="7.2" cy="7.2" r="7.2"/>
+                        <path fill="#E07A5F" transform="matrix(1 0 0 1 19.2 32)" d="M11.2383 -1.2494L-1.5617 14.7506Q-2.1043 15.3902 -1.9878 16.2209Q-1.9192 17.0568 -1.2494 17.5617Q-0.6098 18.1043 0.2209 17.9878Q1.0568 17.9192 1.5617 17.2494L12.8 3.2016L24.0383 17.2494Q24.5432 17.9192 25.3792 17.9878Q26.2098 18.1043 26.8494 17.5617Q27.5192 17.0568 27.5878 16.2209Q27.7043 15.3902 27.1617 14.7506L14.3617 -1.2494Q14.2925 -1.3359 14.2142 -1.4142Q14.1359 -1.4925 14.0494 -1.5617Q13.4098 -2.1043 12.5791 -1.9878Q11.7432 -1.9192 11.2383 -1.2494Z" fill-rule="evenodd"/>
+                    </svg>
+                </div>
+                <span class="size-label">64×64px</span>
+            </div>
+            
+            <div class="preview-card">
+                <h3>🖼️ 128x128 像素</h3>
+                <div class="logo-container" style="background: #f8f9fa;">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="128" viewBox="0 0 64 64">
+                        <path fill="#1B3A4B" transform="matrix(1 0 0 1 3.2 3.2)" d="M57.6 57.6L57.6 0L0 0L0 57.6L57.6 57.6ZM4 53.6L4 4L53.6 4L53.6 53.6L4 53.6Z" fill-rule="evenodd"/>
+                        <circle fill="#1B3A4B" transform="matrix(1 0 0 1 24.8 15.2)" cx="7.2" cy="7.2" r="7.2"/>
+                        <path fill="#E07A5F" transform="matrix(1 0 0 1 19.2 32)" d="M11.2383 -1.2494L-1.5617 14.7506Q-2.1043 15.3902 -1.9878 16.2209Q-1.9192 17.0568 -1.2494 17.5617Q-0.6098 18.1043 0.2209 17.9878Q1.0568 17.9192 1.5617 17.2494L12.8 3.2016L24.0383 17.2494Q24.5432 17.9192 25.3792 17.9878Q26.2098 18.1043 26.8494 17.5617Q27.5192 17.0568 27.5878 16.2209Q27.7043 15.3902 27.1617 14.7506L14.3617 -1.2494Q14.2925 -1.3359 14.2142 -1.4142Q14.1359 -1.4925 14.0494 -1.5617Q13.4098 -2.1043 12.5791 -1.9878Q11.7432 -1.9192 11.2383 -1.2494Z" fill-rule="evenodd"/>
+                    </svg>
+                </div>
+                <span class="size-label">128×128px</span>
+            </div>
+            
+            <div class="preview-card">
+                <h3>🖼️ 256x256 像素</h3>
+                <div class="logo-container" style="background: #f8f9fa;">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="256" height="256" viewBox="0 0 64 64">
+                        <path fill="#1B3A4B" transform="matrix(1 0 0 1 3.2 3.2)" d="M57.6 57.6L57.6 0L0 0L0 57.6L57.6 57.6ZM4 53.6L4 4L53.6 4L53.6 53.6L4 53.6Z" fill-rule="evenodd"/>
+                        <circle fill="#1B3A4B" transform="matrix(1 0 0 1 24.8 15.2)" cx="7.2" cy="7.2" r="7.2"/>
+                        <path fill="#E07A5F" transform="matrix(1 0 0 1 19.2 32)" d="M11.2383 -1.2494L-1.5617 14.7506Q-2.1043 15.3902 -1.9878 16.2209Q-1.9192 17.0568 -1.2494 17.5617Q-0.6098 18.1043 0.2209 17.9878Q1.0568 17.9192 1.5617 17.2494L12.8 3.2016L24.0383 17.2494Q24.5432 17.9192 25.3792 17.9878Q26.2098 18.1043 26.8494 17.5617Q27.5192 17.0568 27.5878 16.2209Q27.7043 15.3902 27.1617 14.7506L14.3617 -1.2494Q14.2925 -1.3359 14.2142 -1.4142Q14.1359 -1.4925 14.0494 -1.5617Q13.4098 -2.1043 12.5791 -1.9878Q11.7432 -1.9192 11.2383 -1.2494Z" fill-rule="evenodd"/>
+                    </svg>
+                </div>
+                <span class="size-label">256×256px</span>
+            </div>
+        </div>
+        
+        <div class="background-options">
+            <h3>🎨 不同背景下的显示效果</h3>
+            <div class="background-grid">
+                <div class="bg-option" style="background: #ffffff;">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+                        <path fill="#1B3A4B" transform="matrix(1 0 0 1 3.2 3.2)" d="M57.6 57.6L57.6 0L0 0L0 57.6L57.6 57.6ZM4 53.6L4 4L53.6 4L53.6 53.6L4 53.6Z" fill-rule="evenodd"/>
+                        <circle fill="#1B3A4B" transform="matrix(1 0 0 1 24.8 15.2)" cx="7.2" cy="7.2" r="7.2"/>
+                        <path fill="#E07A5F" transform="matrix(1 0 0 1 19.2 32)" d="M11.2383 -1.2494L-1.5617 14.7506Q-2.1043 15.3902 -1.9878 16.2209Q-1.9192 17.0568 -1.2494 17.5617Q-0.6098 18.1043 0.2209 17.9878Q1.0568 17.9192 1.5617 17.2494L12.8 3.2016L24.0383 17.2494Q24.5432 17.9192 25.3792 17.9878Q26.2098 18.1043 26.8494 17.5617Q27.5192 17.0568 27.5878 16.2209Q27.7043 15.3902 27.1617 14.7506L14.3617 -1.2494Q14.2925 -1.3359 14.2142 -1.4142Q14.1359 -1.4925 14.0494 -1.5617Q13.4098 -2.1043 12.5791 -1.9878Q11.7432 -1.9192 11.2383 -1.2494Z" fill-rule="evenodd"/>
+                    </svg>
+                    <div style="font-size: 12px; color: #666; margin-top: 10px;">白色背景</div>
+                </div>
+                
+                <div class="bg-option" style="background: #1B3A4B;">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+                        <path fill="#ffffff" transform="matrix(1 0 0 1 3.2 3.2)" d="M57.6 57.6L57.6 0L0 0L0 57.6L57.6 57.6ZM4 53.6L4 4L53.6 4L53.6 53.6L4 53.6Z" fill-rule="evenodd"/>
+                        <circle fill="#ffffff" transform="matrix(1 0 0 1 24.8 15.2)" cx="7.2" cy="7.2" r="7.2"/>
+                        <path fill="#E07A5F" transform="matrix(1 0 0 1 19.2 32)" d="M11.2383 -1.2494L-1.5617 14.7506Q-2.1043 15.3902 -1.9878 16.2209Q-1.9192 17.0568 -1.2494 17.5617Q-0.6098 18.1043 0.2209 17.9878Q1.0568 17.9192 1.5617 17.2494L12.8 3.2016L24.0383 17.2494Q24.5432 17.9192 25.3792 17.9878Q26.2098 18.1043 26.8494 17.5617Q27.5192 17.0568 27.5878 16.2209Q27.7043 15.3902 27.1617 14.7506L14.3617 -1.2494Q14.2925 -1.3359 14.2142 -1.4142Q14.1359 -1.4925 14.0494 -1.5617Q13.4098 -2.1043 12.5791 -1.9878Q11.7432 -1.9192 11.2383 -1.2494Z" fill-rule="evenodd"/>
+                    </svg>
+                    <div style="font-size: 12px; color: #fff; margin-top: 10px;">深蓝背景</div>
+                </div>
+                
+                <div class="bg-option" style="background: #E07A5F;">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+                        <path fill="#ffffff" transform="matrix(1 0 0 1 3.2 3.2)" d="M57.6 57.6L57.6 0L0 0L0 57.6L57.6 57.6ZM4 53.6L4 4L53.6 4L53.6 53.6L4 53.6Z" fill-rule="evenodd"/>
+                        <circle fill="#ffffff" transform="matrix(1 0 0 1 24.8 15.2)" cx="7.2" cy="7.2" r="7.2"/>
+                        <path fill="#1B3A4B" transform="matrix(1 0 0 1 19.2 32)" d="M11.2383 -1.2494L-1.5617 14.7506Q-2.1043 15.3902 -1.9878 16.2209Q-1.9192 17.0568 -1.2494 17.5617Q-0.6098 18.1043 0.2209 17.9878Q1.0568 17.9192 1.5617 17.2494L12.8 3.2016L24.0383 17.2494Q24.5432 17.9192 25.3792 17.9878Q26.2098 18.1043 26.8494 17.5617Q27.5192 17.0568 27.5878 16.2209Q27.7043 15.3902 27.1617 14.7506L14.3617 -1.2494Q14.2925 -1.3359 14.2142 -1.4142Q14.1359 -1.4925 14.0494 -1.5617Q13.4098 -2.1043 12.5791 -1.9878Q11.7432 -1.9192 11.2383 -1.2494Z" fill-rule="evenodd"/>
+                    </svg>
+                    <div style="font-size: 12px; color: #fff; margin-top: 10px;">橙色背景</div>
+                </div>
+                
+                <div class="bg-option" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+                        <path fill="#ffffff" transform="matrix(1 0 0 1 3.2 3.2)" d="M57.6 57.6L57.6 0L0 0L0 57.6L57.6 57.6ZM4 53.6L4 4L53.6 4L53.6 53.6L4 53.6Z" fill-rule="evenodd"/>
+                        <circle fill="#ffffff" transform="matrix(1 0 0 1 24.8 15.2)" cx="7.2" cy="7.2" r="7.2"/>
+                        <path fill="#E07A5F" transform="matrix(1 0 0 1 19.2 32)" d="M11.2383 -1.2494L-1.5617 14.7506Q-2.1043 15.3902 -1.9878 16.2209Q-1.9192 17.0568 -1.2494 17.5617Q-0.6098 18.1043 0.2209 17.9878Q1.0568 17.9192 1.5617 17.2494L12.8 3.2016L24.0383 17.2494Q24.5432 17.9192 25.3792 17.9878Q26.2098 18.1043 26.8494 17.5617Q27.5192 17.0568 27.5878 16.2209Q27.7043 15.3902 27.1617 14.7506L14.3617 -1.2494Q14.2925 -1.3359 14.2142 -1.4142Q14.1359 -1.4925 14.0494 -1.5617Q13.4098 -2.1043 12.5791 -1.9878Q11.7432 -1.9192 11.2383 -1.2494Z" fill-rule="evenodd"/>
+                    </svg>
+                    <div style="font-size: 12px; color: #fff; margin-top: 10px;">渐变背景</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info-section">
+            <h3>🎨 颜色配置</h3>
+            <div class="color-palette">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #1B3A4B;"></div>
+                    <div class="color-name">#1B3A4B<br>深蓝色</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #E07A5F;"></div>
+                    <div class="color-name">#E07A5F<br>珊瑚橙</div>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 30px;">📐 设计说明</h3>
+            <p><strong>Logo 尺寸：</strong>64×64 像素（viewBox: 0 0 64 64）</p>
+            <p><strong>设计元素：</strong></p>
+            <p>• 方形边框 - 外框为正方形框架</p>
+            <p>• 圆形 - 内部有一个圆形元素</p>
+            <p>• 曲线箭头 - 带有珊瑚橙色的曲线形状，增添活力</p>
+            <p><strong>适用场景：</strong></p>
+            <p>• 网站 Favicon（浏览器标签页）</p>
+            <p>• 导航栏 Logo</p>
+            <p>• 社交媒体头像</p>
+            <p>• App 图标</p>
+        </div>
+    </div>
+</body>
+</html>
