@@ -8,7 +8,7 @@ const playItems = [
     description: '探索算法对就业市场的影响。',
     type: 'game',
     url: 'https://putongren.org/survivalofthebestfit-zh_CN/',
-    image: '/images/play-mbti.png'
+    image: '/images/play/play-mbti.png'
   },
   {
     id: 'can-you-break-the-algorithm',
@@ -16,7 +16,7 @@ const playItems = [
     description: '挑战算法，看看你能否突破信息茧房。',
     type: 'game',
     url: 'https://putongren.org/can-you-break-the-algorithm-zh_CN/zh.html#/',
-    image: '/images/play-algorithm.png'
+    image: '/images/play/play-algorithm.png'
   },
   {
     id: 'digital-rights-mbti',
@@ -24,7 +24,7 @@ const playItems = [
     description: '通过24道情境测试，深度解析你的数字主权、算法信任、代理授权与能动性。',
     type: 'assessment',
     url: 'https://persona.putongren.org/',
-    image: '/images/play-survival.png'
+    image: '/images/play/play-survival.png'
   }
 ];
 </script>

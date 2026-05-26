@@ -6,7 +6,7 @@ year: "2025"
 status: completed
 goal: 集结普通消费者，通过共创描绘能让消费者放心托管个人数据的第三方"受托者"，发出普通人的声音。
 participants: 68
-image: /images/campaign-trustee-cover.png
+image: /images/projects/campaign-trustee-cover.png
 homeFeatured: true
 homeOrder: 1
 outputs:

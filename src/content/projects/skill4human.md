@@ -6,7 +6,7 @@ year: "2026"
 status: active
 goal: 回归「机器增强人类」的理念，让SKILL不仅仅是黑箱工具，而是成为人类自身成长的素材。
 participants: 0
-image: /images/skill4human.png
+image: /images/projects/skill4human.png
 homeFeatured: true
 homeOrder: 2
 outputs:

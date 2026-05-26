@@ -111,7 +111,7 @@ year: '2025'
 status: 'completed'
 goal: '集结普通消费者，通过共创描绘能让消费者放心托管个人数据的第三方"受托者"，发出普通人的声音。'
 participants: 68
-image: '/images/campaign-trustee-cover.png'
+image: '/images/projects/campaign-trustee-cover.png'
 homeFeatured: true
 homeOrder: 10
 outputs:
@@ -233,7 +233,7 @@ type: 'algorithm'
 goal: '认识算法如何影响我们的日常生活和决策'
 description: '通过互动工作坊，探讨算法推荐...'
 participants: 2755
-image: '/workshop-algorithm-cover.JPEG'
+image: '/images/workshop/workshop-algorithm-cover.jpg'
 color: 'secondary'
 topicId: 'personal-data'
 feishuUrl: 'https://opendatachina.feishu.cn/wiki/...'
@@ -361,7 +361,7 @@ year: '2025'
 status: 'completed'
 goal: '集结普通消费者，通过共创...'
 participants: 68
-image: '/images/campaign-trustee-cover.png'
+image: '/images/projects/campaign-trustee-cover.png'
 homeFeatured: true
 homeOrder: 10
 ---
@@ -423,8 +423,14 @@ homeOrder: 1
    - 使用文档 URL 作为图片地址
 
 2. **本地图片**
-   - 放入 `public/images/` 目录
-   - 使用 `/images/文件名.png` 引用
+   - 放入对应的分类目录：
+     - `public/images/brand/` - 品牌相关（logo、favicon）
+     - `public/images/projects/` - 项目封面
+     - `public/images/cocreation/` - 共创营内容
+     - `public/images/play/` - Play 相关
+     - `public/images/workshop/` - 工作坊封面
+     - `public/images/qrcode/` - 二维码
+   - 使用对应路径引用，如 `/images/projects/文件名.png`
 
 ### 图片规格建议
 
@@ -441,8 +447,12 @@ homeOrder: 1
 ### 图片 URL 格式
 
 ```yaml
-# 本地图片
-image: '/images/play-mbti.png'
+# 本地图片（按分类目录）
+image: '/images/play/play-mbti.png'
+image: '/images/projects/skill4human.png'
+image: '/images/cocreation/cocreation-1.png'
+image: '/images/workshop/workshop-algorithm-cover.jpg'
+image: '/images/brand/logo.svg'
 
 # 飞书文档
 image: 'https://opendatachina.feishu.cn/docx/TOKEN'
