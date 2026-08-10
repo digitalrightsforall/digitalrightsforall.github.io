@@ -5,6 +5,7 @@ description: 探索以普通人为中心的个人数据治理和权益保护
 order: 1
 projects:
   - data-trustee
+  - agentic-ai-memory
 ---
 
 # 个人数据权益
