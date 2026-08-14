@@ -20,19 +20,20 @@ const tabs = [
 
 const getSectionContent = (sectionId: string) => {
   if (!item.value?.content) return '';
-  
+
   const content = item.value.content;
   const dividerIndex = content.indexOf('\n---\n');
-  
+
   const sections: Record<string, { start: number; end: number }> = {
     overview: { start: 0, end: dividerIndex > 0 ? dividerIndex : content.length },
     review: { start: dividerIndex > 0 ? dividerIndex + 5 : 0, end: content.length },
+    outputs: { start: 0, end: content.length },
   };
-  
+
   const section = sections[sectionId];
   if (!section) return '';
-  
-  return content.substring(section.start, section.end);
+
+  return parseContentLinks(content.substring(section.start, section.end));
 };
 
 const getSeasonLabel = (season: number | undefined) => {
@@ -128,7 +129,7 @@ const getSeasonLabel = (season: number | undefined) => {
       <div class="max-w-4xl mx-auto">
         <article class="bg-white rounded-2xl shadow-lg p-8 md:p-12">
           <div class="prose-custom">
-            <VueMarkdown :source="getSectionContent('overview')" />
+            <VueMarkdown :source="getSectionContent('overview')" :options="{ html: true }" />
           </div>
         </article>
       </div>
@@ -138,7 +139,7 @@ const getSeasonLabel = (season: number | undefined) => {
       <div class="max-w-4xl mx-auto">
         <article class="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-8">
           <div class="prose-custom">
-            <VueMarkdown :source="getSectionContent('review')" />
+            <VueMarkdown :source="getSectionContent('review')" :options="{ html: true }" />
           </div>
         </article>
       </div>
@@ -154,7 +155,7 @@ const getSeasonLabel = (season: number | undefined) => {
             共创产出
           </h2>
           <div class="prose-custom">
-            <VueMarkdown :source="getSectionContent('outputs')" />
+            <VueMarkdown :source="getSectionContent('outputs')" :options="{ html: true }" />
           </div>
         </div>
 

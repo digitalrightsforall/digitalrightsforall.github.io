@@ -6,6 +6,7 @@ year: "2026"
 status: active
 goal: 在 Agentic AI 背景下，从用户（消费者）视角出发，探索「让人放心」的个人数据治理机制，并考察 Agentic AI 成为个人数据「受托者」的可能性与责任边界。
 participants: 0
+image: /images/projects/agentic-ai-memory.jpg
 color: primary
 ---
 

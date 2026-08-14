@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import VueMarkdown from 'vue-markdown-render';
-import { articles, publications, getArticleById, getPublicationById } from '@/content';
+import { articles, publications, getArticleById, getPublicationById, parseContentLinks } from '@/content';
 import { ArrowLeft, Share2, Bookmark, MessageSquare, Lightbulb, ChevronRight, FileText } from 'lucide-vue-next';
 import { computed } from 'vue';
 import { isValidImage } from '@/lib/utils';
@@ -108,7 +108,7 @@ const categoryLabel = computed(() => {
           </header>
 
           <div class="article-content">
-            <vue-markdown :source="articleData.content" />
+            <VueMarkdown :source="parseContentLinks(articleData.content)" :options="{ html: true }" />
           </div>
 
           <footer class="mt-16 pt-10 border-t border-slate-100">

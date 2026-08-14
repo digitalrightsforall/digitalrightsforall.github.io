@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import VueMarkdown from 'vue-markdown-render';
-import { workshops, getWorkshopById } from '@/content';
+import { workshops, getWorkshopById, parseContentLinks } from '@/content';
 import { ArrowLeft, Users, FileText, ExternalLink, Video, ClipboardList } from 'lucide-vue-next';
 import { isValidImage } from '@/lib/utils';
 
@@ -106,7 +106,7 @@ const hasVideo = workshop.videoUrl && workshop.videoUrl.length > 0;
     <div class="bg-surface-container-low py-16 mb-16">
       <div class="max-w-7xl mx-auto px-6">
         <div class="workshop-content max-w-4xl">
-          <vue-markdown :source="workshop.content" />
+          <VueMarkdown :source="parseContentLinks(workshop.content)" :options="{ html: true }" />
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import VueMarkdown from 'vue-markdown-render';
-import { campaigns, getCampaignById } from '@/content';
+import { campaigns, getCampaignById, parseContentLinks } from '@/content';
 import { ArrowLeft, Users, CheckCircle2, Download, ArrowRight, FileText, Calendar, MessageSquare, Sparkles } from 'lucide-vue-next';
 import { isValidImage } from '@/lib/utils';
 
@@ -106,7 +106,7 @@ const getOutputIcon = (type: string) => {
     <div class="max-w-7xl mx-auto px-6 mb-16">
       <!-- Intro Tab -->
       <div v-if="activeTab === 'intro'" class="bg-white rounded-[2.5rem] p-8 md:p-16 shadow-sm border border-slate-100">
-        <vue-markdown :source="campaign.content" class="campaign-content" />
+        <VueMarkdown :source="parseContentLinks(campaign.content)" :options="{ html: true }" class="campaign-content" />
       </div>
 
       <!-- Activities Tab -->

@@ -105,7 +105,7 @@ const prevNextOpinion = computed(() => {
       <div class="max-w-4xl mx-auto">
         <article class="bg-white rounded-2xl shadow-lg p-8 md:p-12">
           <div class="prose-custom">
-            <VueMarkdown :source="parseContentLinks(opinion.content)" />
+            <VueMarkdown :source="parseContentLinks(opinion.content)" :options="{ html: true }" />
           </div>
         </article>
 
