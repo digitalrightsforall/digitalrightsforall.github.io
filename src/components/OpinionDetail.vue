@@ -25,20 +25,11 @@ const relatedOpinions = computed(() => {
 const prevNextOpinion = computed(() => {
   if (!opinion.value) return { prev: null, next: null };
   
-  const sortedOpinions = [...opinions].sort((a, b) => {
-    if (a.homeOrder !== undefined && b.homeOrder !== undefined) {
-      return a.homeOrder - b.homeOrder;
-    }
-    const idA = String(a.id);
-    const idB = String(b.id);
-    return idA.localeCompare(idB);
-  });
-  
-  const currentIndex = sortedOpinions.findIndex(o => o.id === opinion.value!.id);
+  const currentIndex = opinions.findIndex(o => o.id === opinion.value!.id);
   
   return {
-    prev: currentIndex > 0 ? sortedOpinions[currentIndex - 1] : null,
-    next: currentIndex < sortedOpinions.length - 1 ? sortedOpinions[currentIndex + 1] : null
+    prev: currentIndex > 0 ? opinions[currentIndex - 1] : null,
+    next: currentIndex >= 0 && currentIndex < opinions.length - 1 ? opinions[currentIndex + 1] : null
   };
 });
 </script>

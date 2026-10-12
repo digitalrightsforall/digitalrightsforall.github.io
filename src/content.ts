@@ -201,6 +201,20 @@ function parseGuide(): Guide[] {
   }).sort((a, b) => String(a.id).localeCompare(String(b.id)));
 }
 
+function parseDateToTimestamp(dateStr?: string): number {
+  if (!dateStr) return 0;
+  const cnMatch = dateStr.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+  if (cnMatch) {
+    return new Date(Number(cnMatch[1]), Number(cnMatch[2]) - 1, Number(cnMatch[3])).getTime();
+  }
+  const isoMatch = dateStr.match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+  if (isoMatch) {
+    return new Date(Number(isoMatch[1]), Number(isoMatch[2]) - 1, Number(isoMatch[3])).getTime();
+  }
+  const parsed = Date.parse(dateStr);
+  return isNaN(parsed) ? 0 : parsed;
+}
+
 function parseOpinion(): Opinion[] {
   return Object.values(opinionModules).map((raw) => {
     const { data, content } = matter(raw as string);
@@ -209,7 +223,12 @@ function parseOpinion(): Opinion[] {
       id: String(data.id), // 确保 id 始终是字符串
       content: content.trim(),
     } as Opinion;
-  }).sort((a, b) => String(a.id).localeCompare(String(b.id)));
+  }).sort((a, b) => {
+    const timeA = parseDateToTimestamp(a.date);
+    const timeB = parseDateToTimestamp(b.date);
+    if (timeA !== timeB) return timeB - timeA;
+    return String(a.id).localeCompare(String(b.id));
+  });
 }
 
 export const topics: Topic[] = parseTopic();
