@@ -116,10 +116,10 @@ onUnmounted(() => {
 
 <template>
   <section class="py-12 md:py-16 px-6 bg-surface-container-low">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex items-center justify-between mb-8">
-        <h2 class="text-3xl font-bold flex items-center gap-3">
-          <span class="text-3xl">🎠</span>
+    <div class="max-w-5xl mx-auto">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold flex items-center gap-3">
+          <span class="text-2xl md:text-3xl">🎠</span>
           我们在探索
         </h2>
         <div v-if="carouselItems.length > 1" class="flex items-center gap-2">
@@ -153,7 +153,7 @@ onUnmounted(() => {
       </div>
 
       <div 
-        class="relative overflow-hidden rounded-[2rem] max-h-[420px]"
+        class="relative overflow-hidden rounded-[2rem] shadow-md"
         @mouseenter="stopAutoPlay"
         @mouseleave="startAutoPlay"
       >
@@ -168,52 +168,50 @@ onUnmounted(() => {
           >
             <router-link 
               :to="item.url"
-              class="group block relative overflow-hidden"
+              class="group block relative w-full h-[300px] sm:h-[350px] md:h-[390px] overflow-hidden"
             >
-              <div class="aspect-[16/9] md:aspect-[21/9] max-h-[420px] relative">
-                <img 
-                  :src="item.image" 
-                  :alt="item.title"
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  referrerPolicy="no-referrer"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent"></div>
-                
-                <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 lg:p-10">
-                  <div class="flex items-center gap-3 mb-3">
-                    <span 
-                      :class="[
-                        'px-3 py-1 text-xs font-bold uppercase tracking-wider text-white rounded-full',
-                        typeColors[item.type]
-                      ]"
-                    >
-                      {{ typeLabels[item.type] }}
-                    </span>
-                    <span 
-                      v-if="item.status"
-                      class="px-3 py-1 text-xs font-bold uppercase tracking-wider text-white rounded-full"
-                      :class="item.status === 'active' ? 'bg-green-500' : 'bg-gray-500'"
-                    >
-                      {{ item.status === 'active' ? '进行中' : '已完结' }}
-                    </span>
+              <img 
+                :src="item.image" 
+                :alt="item.title"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                referrerPolicy="no-referrer"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
+              
+              <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                <div class="flex items-center gap-3 mb-3">
+                  <span 
+                    :class="[
+                      'px-3 py-1 text-xs font-bold uppercase tracking-wider text-white rounded-full',
+                      typeColors[item.type]
+                    ]"
+                  >
+                    {{ typeLabels[item.type] }}
+                  </span>
+                  <span 
+                    v-if="item.status"
+                    class="px-3 py-1 text-xs font-bold uppercase tracking-wider text-white rounded-full"
+                    :class="item.status === 'active' ? 'bg-green-500' : 'bg-gray-500'"
+                  >
+                    {{ item.status === 'active' ? '进行中' : '已完结' }}
+                  </span>
+                </div>
+                <h3 class="text-xl md:text-3xl font-black text-white mb-2 group-hover:text-primary/90 transition-colors">
+                  {{ item.title }}
+                </h3>
+                <p class="text-white/80 text-sm md:text-base max-w-2xl mb-4 line-clamp-2">
+                  {{ item.description || item.excerpt || item.goal }}
+                </p>
+                <div class="flex items-center gap-6">
+                  <div v-if="item.participants && item.participants > 0" class="flex items-center gap-2 text-white/70 text-sm">
+                    <span class="font-bold text-white">{{ item.participants }}</span> 人参与
                   </div>
-                  <h3 class="text-xl md:text-3xl font-black text-white mb-2 group-hover:text-primary/90 transition-colors">
-                    {{ item.title }}
-                  </h3>
-                  <p class="text-white/80 text-sm md:text-base max-w-2xl mb-4 line-clamp-2">
-                    {{ item.description || item.excerpt || item.goal }}
-                  </p>
-                  <div class="flex items-center gap-6">
-                    <div v-if="item.participants && item.participants > 0" class="flex items-center gap-2 text-white/70 text-sm">
-                      <span class="font-bold text-white">{{ item.participants }}</span> 人参与
-                    </div>
-                    <div v-if="item.date" class="flex items-center gap-2 text-white/70 text-sm">
-                      {{ item.date }}
-                    </div>
-                    <span class="inline-flex items-center gap-2 text-white font-bold group-hover:gap-4 transition-all">
-                      查看详情 <ArrowRight :size="18" />
-                    </span>
+                  <div v-if="item.date" class="flex items-center gap-2 text-white/70 text-sm">
+                    {{ item.date }}
                   </div>
+                  <span class="inline-flex items-center gap-2 text-white font-bold group-hover:gap-4 transition-all">
+                    查看详情 <ArrowRight :size="18" />
+                  </span>
                 </div>
               </div>
             </router-link>
