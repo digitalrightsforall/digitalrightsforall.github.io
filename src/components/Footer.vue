@@ -33,7 +33,7 @@ const showQR = ref(false);
             <span class="text-xl font-black tracking-tighter text-on-surface">普通人的数字权利</span>
           </router-link>
           <p class="text-on-surface-variant max-w-sm leading-relaxed mb-8">
-            我们是共创社区，通过资讯、工作坊和行动项目，帮助每一个普通人在机器时代保护自己。
+            我们通过社区共议、共创和共同行动，帮助每一个普通人在机器时代守护自己的权益。
           </p>
           <div class="flex gap-4">
             <a 

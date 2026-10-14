@@ -75,8 +75,8 @@ const latestGuides = featuredGuides.length >= 3
           <span class="hand-drawn-underline">掌握自己的权利</span>
         </h1>
         <p class="text-on-surface-variant text-lg md:text-2xl max-w-2xl mx-auto leading-relaxed mb-12">
-          我们是共创社区，通过资讯、工作坊和行动项目，<br class="hidden md:block"/>
-          帮助每一个普通人在机器时代保护自己。
+          我们通过社区共议、共创和共同行动，<br class="hidden md:block"/>
+          帮助每一个普通人在机器时代守护自己的权益。
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
           <router-link to="/topics" class="w-full sm:w-auto px-10 py-5 bg-primary text-on-primary rounded-2xl font-black text-lg hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2 group">
