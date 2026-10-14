@@ -49,7 +49,13 @@ export default defineConfig(({mode}) => {
       include: ['gray-matter'],
     },
     server: {
+      port: 7077,
+      host: '0.0.0.0',
       hmr: process.env.DISABLE_HMR !== 'true',
+    },
+    preview: {
+      port: 7077,
+      host: '0.0.0.0',
     },
   };
 });
