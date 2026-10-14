@@ -115,7 +115,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section class="py-20 px-6 bg-surface-container-low">
+  <section class="py-12 md:py-16 px-6 bg-surface-container-low">
     <div class="max-w-7xl mx-auto">
       <div class="flex items-center justify-between mb-8">
         <h2 class="text-3xl font-bold flex items-center gap-3">
@@ -153,7 +153,7 @@ onUnmounted(() => {
       </div>
 
       <div 
-        class="relative overflow-hidden rounded-[2rem]"
+        class="relative overflow-hidden rounded-[2rem] max-h-[420px]"
         @mouseenter="stopAutoPlay"
         @mouseleave="startAutoPlay"
       >
@@ -170,17 +170,17 @@ onUnmounted(() => {
               :to="item.url"
               class="group block relative overflow-hidden"
             >
-              <div class="aspect-[16/9] relative">
+              <div class="aspect-[16/9] md:aspect-[21/9] max-h-[420px] relative">
                 <img 
                   :src="item.image" 
                   :alt="item.title"
                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent"></div>
                 
-                <div class="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-                  <div class="flex items-center gap-3 mb-4">
+                <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 lg:p-10">
+                  <div class="flex items-center gap-3 mb-3">
                     <span 
                       :class="[
                         'px-3 py-1 text-xs font-bold uppercase tracking-wider text-white rounded-full',
@@ -197,10 +197,10 @@ onUnmounted(() => {
                       {{ item.status === 'active' ? '进行中' : '已完结' }}
                     </span>
                   </div>
-                  <h3 class="text-2xl md:text-4xl font-black text-white mb-3 group-hover:text-primary/90 transition-colors">
+                  <h3 class="text-xl md:text-3xl font-black text-white mb-2 group-hover:text-primary/90 transition-colors">
                     {{ item.title }}
                   </h3>
-                  <p class="text-white/80 text-sm md:text-base max-w-2xl mb-6 line-clamp-2">
+                  <p class="text-white/80 text-sm md:text-base max-w-2xl mb-4 line-clamp-2">
                     {{ item.description || item.excerpt || item.goal }}
                   </p>
                   <div class="flex items-center gap-6">
