@@ -9,7 +9,7 @@ import { FileText } from 'lucide-vue-next';
       <div class="max-w-7xl mx-auto">
         <h1 class="text-4xl font-black mb-8">观点</h1>
         <p class="text-on-surface-variant text-lg mb-12 max-w-2xl">
-          深度分析与思考，小区数据权益、AI记忆自主掌控等核心议题。
+          分享有价值的思考、洞察和趋势
         </p>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

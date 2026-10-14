@@ -11,6 +11,8 @@ image: >-
 type: article
 sourceUrl: 'https://mp.weixin.qq.com/s/OMcBmXrJfgqZ38cEWDOaZg'
 wechatId: OMcBmXrJfgqZ38cEWDOaZg
+homeFeatured: true
+homeOrder: 1
 ---
 不同于办公场景，当 Agent 介入生活服务时，应该警惕其可能带来的个人数据风险。
 

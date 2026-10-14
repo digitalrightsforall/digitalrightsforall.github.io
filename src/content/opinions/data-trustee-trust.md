@@ -11,8 +11,6 @@ image: >-
 type: article
 sourceUrl: 'https://mp.weixin.qq.com/s/bbGxoRTjIFHvNGJGw-3Ijg'
 wechatId: bbGxoRTjIFHvNGJGw-3Ijg
-homeFeatured: true
-homeOrder: 3
 topicId: personal-data
 projectId: data-trustee
 ---

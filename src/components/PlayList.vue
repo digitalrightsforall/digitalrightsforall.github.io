@@ -4,7 +4,7 @@ import { Gamepad2, ExternalLink } from 'lucide-vue-next';
 const playItems = [
   {
     id: 'survival-of-the-best-fit',
-    title: 'Survival of the Best Fit',
+    title: 'Survival of the Best Fit（中文译版）',
     description: '探索算法对就业市场的影响。',
     type: 'game',
     url: 'https://putongren.org/survivalofthebestfit-zh_CN/',
@@ -12,7 +12,7 @@ const playItems = [
   },
   {
     id: 'can-you-break-the-algorithm',
-    title: 'Can You Break The Algorithm',
+    title: 'Can You Break The Algorithm（中文译版）',
     description: '挑战算法，看看你能否突破信息茧房。',
     type: 'game',
     url: 'https://putongren.org/can-you-break-the-algorithm-zh_CN/zh.html#/',

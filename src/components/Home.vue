@@ -71,7 +71,7 @@ const latestGuides = featuredGuides.length >= 3
           为普通人打造
         </div>
         <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-8">
-          在数字时代<br/>
+          在机器时代<br/>
           <span class="hand-drawn-underline">掌握自己的权利</span>
         </h1>
         <p class="text-on-surface-variant text-lg md:text-2xl max-w-2xl mx-auto leading-relaxed mb-12">

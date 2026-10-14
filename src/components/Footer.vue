@@ -92,7 +92,7 @@ const showQR = ref(false);
         </p>
         <div class="flex items-center gap-2 text-xs font-bold text-on-surface-variant uppercase tracking-widest">
           <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-          构建令人放心的数字时代
+          构建令人放心的机器时代
         </div>
       </div>
     </div>

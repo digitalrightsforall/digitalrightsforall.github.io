@@ -13,6 +13,8 @@ sourceUrl: 'https://mp.weixin.qq.com/s/dQUb3YwL2yg1mKCGIbB1qw'
 wechatId: dQUb3YwL2yg1mKCGIbB1qw
 topicId: collective-governance
 projectId: xiaoqu-data
+homeFeatured: true
+homeOrder: 2
 ---
 ![Image](/images/opinions/41028f709fec3208075891e921834ae587327c143741acdbd87e14447199ea17.webp)
 

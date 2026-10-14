@@ -194,15 +194,23 @@ async function main() {
       frontmatter.topicId = 'collective-governance';
       frontmatter.projectId = 'xiaoqu-data';
     }
-    if (slug === 'data-trustee-functions') {
+    if (slug === 'ai-agent-service-entry-data-risks') {
+      frontmatter.homeFeatured = true;
+      frontmatter.homeOrder = 1;
+    }
+    if (slug === 'xiaoqu-data-governance-guide') {
       frontmatter.homeFeatured = true;
       frontmatter.homeOrder = 2;
+    }
+    if (slug === 'fifteenth-five-year-plan-data-trustee-advice') {
+      frontmatter.homeFeatured = true;
+      frontmatter.homeOrder = 3;
+    }
+    if (slug === 'data-trustee-functions') {
       frontmatter.topicId = 'personal-data';
       frontmatter.projectId = 'data-trustee';
     }
     if (slug === 'data-trustee-trust') {
-      frontmatter.homeFeatured = true;
-      frontmatter.homeOrder = 3;
       frontmatter.topicId = 'personal-data';
       frontmatter.projectId = 'data-trustee';
     }
