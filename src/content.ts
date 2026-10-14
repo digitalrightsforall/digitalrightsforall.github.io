@@ -6,6 +6,8 @@ export interface Topic {
   description: string;
   order: number;
   projects?: string[];
+  image?: string;
+  imagePosition?: string;
   homeFeatured?: boolean;
   homeOrder?: number;
   content?: string;
@@ -20,6 +22,7 @@ export interface Project {
   goal?: string;
   participants?: number;
   image?: string;
+  imagePosition?: string;
   outputs?: {
     name: string;
     url: string;

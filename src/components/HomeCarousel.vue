@@ -12,6 +12,7 @@ export interface CarouselItem {
   excerpt?: string;
   goal?: string;
   image: string;
+  imagePosition?: string;
   url: string;
   participants?: number;
   date?: string;
@@ -34,6 +35,7 @@ const getAllCarouselItems = computed<CarouselItem[]>(() => {
       title: topic.title,
       description: topic.description,
       image: topic.image,
+      imagePosition: topic.imagePosition,
       url: `/topic/${topic.id}`,
       order: topic.homeOrder || topic.order,
     });
@@ -47,6 +49,7 @@ const getAllCarouselItems = computed<CarouselItem[]>(() => {
       title: project.title,
       description: project.goal,
       image: project.image,
+      imagePosition: project.imagePosition,
       url: `/project/${project.id}`,
       participants: project.participants,
       status: project.status,
@@ -168,12 +171,13 @@ onUnmounted(() => {
           >
             <router-link 
               :to="item.url"
-              class="group block relative w-full h-[300px] sm:h-[350px] md:h-[390px] overflow-hidden"
+              class="group block relative w-full h-[360px] sm:h-[420px] md:h-[460px] lg:h-[480px] overflow-hidden"
             >
               <img 
                 :src="item.image" 
                 :alt="item.title"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                :style="{ objectPosition: item.imagePosition || 'center center' }"
                 referrerPolicy="no-referrer"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
